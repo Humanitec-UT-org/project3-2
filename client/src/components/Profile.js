@@ -1,17 +1,27 @@
 import React, { Component } from "react";
-import axios from "axios";
 import ManualSearch from "./ManualSearch";
 import PieChart from "react-minimal-pie-chart";
 // foods from /api/food
-
+//
 export class Profile extends Component {
   render() {
     return (
       <div>
         {this.props.user.addedFooditems.map(item => (
-          <h1>{item}</h1>
+          <div>
+            <h1>{item.name}</h1>
+            <h1>{item.img}</h1>
+            <button
+              onClick={() => {
+                console.log(item);
+                this.props.deleteItem(item);
+              }}
+            >
+              Delete
+            </button>
+          </div>
         ))}
-        <ManualSearch addFood={this.props.addFood} />
+        <ManualSearch addToProfile={this.props.addFood} />
         <PieChart
           className="PieChartProfile"
           data={[

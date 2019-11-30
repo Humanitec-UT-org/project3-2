@@ -3,6 +3,7 @@ import axios from "axios";
 import { Form, Button } from "react-bootstrap";
 // here manual search will be shown
 import UserAddsFood from "./UserAddsFood";
+import SingleFoodItem from "./SingleFoodItem";
 class ManualSearch extends Component {
   constructor() {
     super();
@@ -38,10 +39,11 @@ class ManualSearch extends Component {
         <h1>
           result:
           {this.state.foods.map(food => (
-            <p>
-              {food.product_name}
-              {food.images}
-            </p>
+            <SingleFoodItem
+              item={food}
+              addToProfile={this.props.addToProfile}
+              // deleteItem={this.props.deleteItem}
+            />
           ))}
         </h1>
         <div className="input-group-prepend justify-content-center">
@@ -70,10 +72,6 @@ class ManualSearch extends Component {
               search
             </Button>
           </Form>
-          <UserAddsFood
-            searchTerm={this.state.searchTerm}
-            addFood={this.props.addFood}
-          />
         </div>
       </div>
     );

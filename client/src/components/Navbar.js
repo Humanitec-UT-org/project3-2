@@ -28,21 +28,28 @@ export default class myNavbar extends Component {
             <Button variant="outline-info">Search</Button>
           </Form>
 
-          <Button variant="outline-info" onClick={this.LogoutHandler}>
-            Logout
-          </Button>
-          <Link to="/login">
-            <Button variant="outline-info">Login</Button>
-          </Link>
-          <Link to="/scan">
-            <Button variant="outline-info">scan</Button>
-          </Link>
-          <Link to="/signup">
-            <Button variant="outline-info">Signup</Button>
-          </Link>
-          <Link to="/profile">
-            <Button variant="outline-info">Profile</Button>
-          </Link>
+          {this.props.user ? (
+            <div>
+              <Button variant="outline-info" onClick={this.LogoutHandler}>
+                Logout
+              </Button>
+              <Link to="/scan">
+                <Button variant="outline-info">Scan</Button>
+              </Link>
+              <Link to="/profile">
+                <Button variant="outline-info">Profile</Button>
+              </Link>
+            </div>
+          ) : (
+            <div>
+              <Link to="/signup">
+                <Button variant="outline-info">Signup</Button>
+              </Link>
+              <Link to="/login">
+                <Button variant="outline-info">Login</Button>
+              </Link>
+            </div>
+          )}
         </Navbar>
       </div>
     );

@@ -11,7 +11,14 @@ authRouter.get("/checkuser", (req, res, next) => {
   console.log("we are on /checkuser");
 
   if (req.user) {
-    res.json({ userDoc: req.user });
+    res.json({
+      userDoc: {
+        // what takes the user with
+        _id: req.user.id,
+        name: req.user.name,
+        addedFooditems: req.user.addedFooditems
+      }
+    });
   } else {
     res.json({ userDoc: null });
   }

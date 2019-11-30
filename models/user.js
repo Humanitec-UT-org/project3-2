@@ -6,7 +6,7 @@ const userSchema = new Schema(
     username: String,
     password: String,
     email: String,
-    addedFooditems: [],
+    addedFooditems: [{ type: Schema.Types.ObjectId, ref: "foodFromList" }],
     image: {
       type: String,
       default:

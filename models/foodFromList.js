@@ -4,7 +4,12 @@ const Schema = mongoose.Schema;
 
 const foodFromListSchema = new Schema({
   name: String,
-  img: String,
+  img: {
+    type: String,
+    default:
+      "http://pluspng.com/img-png/gruner-apfel-png-die-aktuellesten-stellen-aus-dem-bereich-medical-2008.png"
+  },
+  code: String,
   group: String,
   emission: Number,
   car: Number,

@@ -5,11 +5,11 @@ class UserAddsFood extends React.Component {
   submitHandler = e => {
     e.preventDefault();
     const data = {
-      product_name: this.props.searchTerm
+      name: this.props.searchTerm
     };
-    console.log("Here is the added:", data.product_name);
+    console.log("Here is the added:", data.name);
     axios
-      .post("/api/foods", data)
+      .post("/api/foods", data.name)
       .then(response => {
         // this.setState({
         //   name: ""
@@ -26,13 +26,7 @@ class UserAddsFood extends React.Component {
   //   };
 
   render() {
-    return (
-      <div>
-        <button onClick={this.submitHandler} type="submit">
-          add to profile
-        </button>
-      </div>
-    );
+    return <div></div>;
   }
 }
 export default UserAddsFood;

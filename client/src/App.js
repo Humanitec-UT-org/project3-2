@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 import ProjectList from "./components/ProjectList";
 import { Redirect, Switch, Route } from "react-router-dom";
 import Signup from "./components/Signup";
@@ -6,7 +7,6 @@ import Login from "./components/Login";
 import Navbar from "./components/Navbar";
 import Foods from "./components/FoodList";
 import "./App.css";
-import ManualSearch from "./components/ManualSearch";
 import Profile from "./components/Profile";
 import ScanningFrame from "./components/ScanningFrame";
 
@@ -23,28 +23,46 @@ class App extends React.Component {
     });
   };
 
-  addFoodHandler = array => {
-    let copy = { ...this.state.loggedInUser };
-    console.log("array");
-    console.log(array);
-    copy.addedFooditems = array;
-    console.log("copy");
-    console.log(copy);
-    this.setState({
-      loggedInUser: copy
+  addFoodHandler = foodItem => {
+    axios
+      .post("/api/foods", { id: foodItem._id })
+      .then(response => {
+        this.setState({
+          loggedInUser: {
+            ...this.state.loggedInUser,
+            addedFooditems: response.data
+          }
+        });
+      })
+      .catch(() => {});
+  };
+
+  deleteItemHandler = (foodItem, index) => {
+    console.log("deleting ", foodItem);
+    axios.delete("/api/foods/delete/" + foodItem._id).then(response => {
+      // const myFoodItemsCopy = [...this.state.loggedInUser.addedFooditems];
+      // myFoodItemsCopy.splice(index + 1, 1);
+      this.setState({
+        loggedInUser: {
+          ...this.state.loggedInUser,
+          addedFooditems: response.data
+        }
+      });
     });
   };
 
   render() {
     return (
       <div>
-        {/* <MyFilteringComponent></MyFilteringComponent> */}
         Hello,
         {this.state.loggedInUser
           ? this.state.loggedInUser.username
           : "Stranger"}
         !
-        <Navbar updateUser={this.updateUserHandler} />
+        <Navbar
+          updateUser={this.updateUserHandler}
+          user={this.state.loggedInUser}
+        />
         <Switch>
           {/* <Route path="/profile" component={ProjectList}></Route> */}
 
@@ -72,6 +90,7 @@ class App extends React.Component {
                   <Profile
                     user={this.state.loggedInUser}
                     addFood={this.addFoodHandler}
+                    deleteItem={this.deleteItemHandler}
                   ></Profile>
                 );
               } else {
