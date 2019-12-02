@@ -2,10 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
+
 import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter } from "react-router-dom";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "@devexpress/dx-react-chart-bootstrap4/dist/dx-react-chart-bootstrap4.css";
 document.getElementById("root").innerText =
   "The React app has not connected to the backend yet.";
 

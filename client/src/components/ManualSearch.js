@@ -47,14 +47,6 @@ class ManualSearch extends Component {
           ))}
         </h1>
         <div className="input-group-prepend justify-content-center">
-          {/* display our foodlist */}
-          {/* <section className="section">
-            <ul>
-              {this.state.foodList.map(item => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </section> */}
           <Form onSubmit={this.handleFormSubmit}>
             <input
               className="input"

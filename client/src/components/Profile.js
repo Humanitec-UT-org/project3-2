@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ManualSearch from "./ManualSearch";
 import PieChart from "react-minimal-pie-chart";
+import FoodList from "./FoodList";
 // foods from /api/food
 //
 export class Profile extends Component {
@@ -30,6 +31,7 @@ export class Profile extends Component {
             { title: "Three", value: 20, color: "#6A2135" }
           ]}
         />
+        <FoodList></FoodList>
         {/* ;type dataProps = {
   value: number;
   color: string;
