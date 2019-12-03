@@ -1,23 +1,21 @@
 import React from "react";
 import axios from "axios";
 
-class AddProject extends React.Component {
+class AddFoodItem extends React.Component {
   state = {
     name: "",
-    code: "",
-    foodfromlists: ""
+    emission: ""
   };
 
   submitHandler = event => {
     event.preventDefault();
     // send the data to the backend
     axios
-      .post("/api/projects", this.state)
+      .post("/api/foods/add-to-list", this.state)
       .then(response => {
         this.setState({
           name: "",
-          code: "",
-          foodfromlists: ""
+          emission: ""
         });
 
         this.props.addProject();
@@ -33,16 +31,11 @@ class AddProject extends React.Component {
     });
   };
 
-  changeCodeHandler = event => {
-    this.setState({
-      code: event.target.value
-    });
-  };
-
-  changeCategoryHandler = event => {
-    this.setState({
-      foodfromlists: event.target.value
-    });
+  changeEmissionHandler = e => {
+    const re = /^[0-9\b]+$/;
+    if (e.target.value === "" || re.test(e.target.value)) {
+      this.setState({ emission: e.target.value });
+    }
   };
 
   render() {
@@ -52,23 +45,16 @@ class AddProject extends React.Component {
         <form onSubmit={this.submitHandler}>
           <input
             onChange={this.changeNameHandler}
-            value={this.state.product_name}
+            value={this.state.name}
             type="text"
-            placeholder="Product"
+            placeholder="Name"
           ></input>
           <br></br>
           <input
-            onChange={this.changeCodeHandler}
-            value={this.state.code}
+            onChange={this.changeEmissionHandler}
+            value={this.state.emission}
             type="text"
-            placeholder="EAN Code"
-          ></input>
-          <br></br>
-          <input
-            onChange={this.changeCategoryHandler}
-            value={this.state.foodfromlists}
-            type="text"
-            placeholder="Category"
+            placeholder="Emission"
           ></input>
           <button type="submit">Submit</button>
         </form>
@@ -77,4 +63,4 @@ class AddProject extends React.Component {
   }
 }
 
-export default AddProject;
+export default AddFoodItem;

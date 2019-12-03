@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import { Navbar, Nav, Button, Form, FormControl, Card } from "react-bootstrap";
+import { Navbar, Nav, Button, Form, FormControl } from "react-bootstrap";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import Login from "../components/Login";
-import CSS from "../App.css";
+
 export default class myNavbar extends Component {
   constructor(props) {
     super(props);
@@ -48,7 +47,7 @@ export default class myNavbar extends Component {
                 Logout
               </Button>
               <Link to="/scan">
-                <Button variant="outline-info">Scan</Button>
+                <Button variant="outline-info">Add</Button>
               </Link>
               <Link to="/profile">
                 <Button variant="outline-info">Profile</Button>

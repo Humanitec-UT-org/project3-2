@@ -27,8 +27,7 @@ router.get("/:id", function(req, res, next) {
 router.post("/", (req, res, next) => {
   Project.create({
     name: req.body.name,
-    code: req.body.code,
-    foodfromlists: req.body.foodfromlists
+    code: req.body.code
     // owner: req.user._id
   })
     .then(response => {

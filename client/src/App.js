@@ -1,6 +1,5 @@
 import React from "react";
 import axios from "axios";
-import ProjectList from "./components/ProjectList";
 
 import { Redirect, Switch, Route } from "react-router-dom";
 import Signup from "./components/Signup";
@@ -10,7 +9,7 @@ import Foods from "./components/FoodList";
 import "./App.css";
 import Profile from "./components/Profile";
 import Home from "./components/Home";
-import ScanningFrame from "./components/ScanningFrame";
+import AddFoodItem from "./components/AddFoodItem";
 
 class App extends React.Component {
   state = {
@@ -111,7 +110,7 @@ class App extends React.Component {
           <Route
             path="/scan"
             render={() => {
-              return <ScanningFrame></ScanningFrame>;
+              return <AddFoodItem />;
             }}
           ></Route>
           <Route

@@ -11,8 +11,8 @@ const passport = require("passport");
 var indexRouter = require("./routes/index");
 var authRouter = require("./routes/auth");
 let projectsRouter = require("./routes/projects");
-let foodsRouter = require("./routes/foodsExtended");
-let productRouter = require("./routes/product");
+let foodsRouter = require("./routes/foods");
+//let productRouter = require("./routes/product");
 let scanRouter = require("./routes/scan");
 
 var app = express();
@@ -56,7 +56,7 @@ app.use("/", indexRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/projects", projectsRouter);
 app.use("/api/foods", foodsRouter);
-app.use("/api/products", productRouter);
+//app.use("/api/products", productRouter);
 app.use("/api/scan", scanRouter);
 
 // catch 404 and forward to error handler
