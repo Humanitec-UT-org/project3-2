@@ -1,5 +1,7 @@
 import React from "react";
 import axios from "axios";
+import { Form } from "react-bootstrap";
+import "../";
 
 class Login extends React.Component {
   state = {
@@ -33,26 +35,35 @@ class Login extends React.Component {
 
   render() {
     return (
-      <div>
-        LOGIN:
-        <form onSubmit={this.submitHandler}>
-          <input
-            name="username"
-            onChange={e => this.changeHandler(e)}
-            value={this.state.username}
-            type="text"
-            placeholder="username"
-          ></input>
-          <br></br>
-          <input
-            name="password"
-            onChange={e => this.changeHandler(e)}
-            value={this.state.password}
-            type="password"
-            placeholder="password"
-          ></input>
-          <button type="submit">Submit</button>
-        </form>
+      <div className="Login-Wrapper">
+        <div id="formContent">
+          <div className="fadeIn first">
+            <img src="..." alt="..." id="icon" />
+          </div>
+          LOGIN:
+          <Form onSubmit={this.submitHandler}>
+            <input
+              id="login"
+              className="fadeIn second"
+              name="username"
+              onChange={e => this.changeHandler(e)}
+              value={this.state.username}
+              type="text"
+              placeholder="name"
+            ></input>
+            <br></br>
+            <input
+              id="password"
+              className="fadeIn third"
+              name="password"
+              onChange={e => this.changeHandler(e)}
+              value={this.state.password}
+              type="password"
+              placeholder="password"
+            ></input>
+            <button type="submit">Submit</button>
+          </Form>
+        </div>
       </div>
     );
   }

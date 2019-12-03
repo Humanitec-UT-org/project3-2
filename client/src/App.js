@@ -79,7 +79,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="Main">
         Hello,
         {this.state.loggedInUser
           ? this.state.loggedInUser.username

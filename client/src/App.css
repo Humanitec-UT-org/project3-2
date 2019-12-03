@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css?family=Jura:700&display=swap");
+/* font-family: 'Jura', sans-serif; */
 .App {
   text-align: center;
 }
@@ -66,4 +68,8 @@ canvas.drawingBuffer {
 .PieChartProfile {
   width: 20%;
   height: 20%;
+}
+.Main {
+  font-family: "Jura", sans-serif;
+  font-weight: 700;
 }
