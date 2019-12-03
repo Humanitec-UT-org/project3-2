@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Form, Button } from "react-bootstrap";
 // here manual search will be shown
-import UserAddsFood from "./UserAddsFood";
+
 import SingleFoodItem from "./SingleFoodItem";
 class ManualSearch extends Component {
   constructor() {

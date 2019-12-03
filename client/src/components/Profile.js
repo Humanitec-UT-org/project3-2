@@ -2,16 +2,30 @@ import React, { Component } from "react";
 import ManualSearch from "./ManualSearch";
 import PieChart from "react-minimal-pie-chart";
 import FoodList from "./FoodList";
+
 // foods from /api/food
 //
 export class Profile extends Component {
   render() {
+    const sum = this.props.user.addedFooditems.reduce(
+      (a, c) => a + c.emission,
+      0
+    );
+    const fishItems = this.props.user.addedFooditems.filter(
+      f => f.group === "fish"
+    );
+    const fishSum = fishItems.reduce((a, c) => a + c.emission, 0);
+    const leftoverEmission = 100 - fishSum;
+    console.log("fishSum", fishSum);
+    console.log("leftoverEmission", leftoverEmission);
+    //const sum = this.props.user.addedFooditems[0].emission;
     return (
       <div>
+        Summe : {sum}
         {this.props.user.addedFooditems.map(item => (
           <div>
             <h1>{item.name}</h1>
-            <h1>{item.img}</h1>
+            <h1></h1>
             <button
               onClick={() => {
                 console.log(item);
@@ -26,9 +40,8 @@ export class Profile extends Component {
         <PieChart
           className="PieChartProfile"
           data={[
-            { title: "One", value: 10, color: "#E38627" },
-            { title: "Two", value: 15, color: "#C13C37" },
-            { title: "Three", value: 20, color: "#6A2135" }
+            { title: "Fish", value: fishSum, color: "#E38627" },
+            { title: "Leftover", value: leftoverEmission, color: "#99999" }
           ]}
         />
         <FoodList></FoodList>

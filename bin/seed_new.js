@@ -1,6 +1,6 @@
 let newFoods = [
   {
-    product_name: "Inger",
+    name: "Ingwer",
     code: "4847474747",
     foodfromlists: "tea"
   }
