@@ -38,7 +38,7 @@ class Login extends React.Component {
         <form onSubmit={this.submitHandler}>
           <input
             name="username"
-            onChange={this.changeHandler}
+            onChange={e => this.changeHandler(e)}
             value={this.state.username}
             type="text"
             placeholder="username"
@@ -46,9 +46,9 @@ class Login extends React.Component {
           <br></br>
           <input
             name="password"
-            onChange={this.changeHandler}
+            onChange={e => this.changeHandler(e)}
             value={this.state.password}
-            type="text"
+            type="password"
             placeholder="password"
           ></input>
           <button type="submit">Submit</button>

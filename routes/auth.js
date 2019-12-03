@@ -34,13 +34,13 @@ authRouter.post("/signup", (req, res, next) => {
     return;
   }
 
-  // if (password.length < 7) {
-  //   res.status(400).json({
-  //     message:
-  //       "Please make your password at least 8 characters long for security reasons."
-  //   });
-  //   return;
-  // }
+  if (password.length < 7) {
+    res.status(400).json({
+      message:
+        "Please make your password at least 8 characters long for security reasons."
+    });
+    return;
+  }
 
   User.findOne({ username }, (err, foundUser) => {
     if (err) {
@@ -82,7 +82,7 @@ authRouter.post("/signup", (req, res, next) => {
   });
 });
 
-// /api/auth/login
+//POST /api/auth/login
 authRouter.post("/login", (req, res, next) => {
   console.log("user sucessfully logged in");
   passport.authenticate("local", (err, theUser, failureDetails) => {

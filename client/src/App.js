@@ -1,6 +1,7 @@
 import React from "react";
 import axios from "axios";
 import ProjectList from "./components/ProjectList";
+
 import { Redirect, Switch, Route } from "react-router-dom";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
@@ -8,11 +9,13 @@ import Navbar from "./components/Navbar";
 import Foods from "./components/FoodList";
 import "./App.css";
 import Profile from "./components/Profile";
+import Home from "./components/Home";
 import ScanningFrame from "./components/ScanningFrame";
 
 class App extends React.Component {
   state = {
-    loggedInUser: this.props.user
+    loggedInUser: this.props.user,
+    isVisible: true
   };
 
   updateUserHandler = userObj => {
@@ -21,6 +24,30 @@ class App extends React.Component {
     this.setState({
       loggedInUser: userObj
     });
+  };
+
+  handleSubmit = e => {
+    e.preventDefault();
+    this.setState(
+      {
+        isVisible: false
+      },
+      function() {
+        console.log(this.state.isVisible);
+      }
+    );
+    return false;
+  };
+  handleRemount = e => {
+    this.setState(
+      {
+        isVisible: true
+      },
+      function() {
+        console.log(this.state.isVisible);
+      }
+    );
+    e.preventDefault();
   };
 
   addFoodHandler = foodItem => {
@@ -64,8 +91,13 @@ class App extends React.Component {
           user={this.state.loggedInUser}
         />
         <Switch>
-          {/* <Route path="/profile" component={ProjectList}></Route> */}
-
+          <Route exact path="/" component={Home} />
+          {/* <Route
+            path="/home"
+            render={() => {
+              if (this.state.loggedInUser == null) return <Home />;
+            }}
+          /> */}
           <Route
             path="/login"
             render={() => {

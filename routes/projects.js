@@ -2,7 +2,7 @@ var express = require("express");
 var router = express.Router();
 
 let Project = require("../models/project");
-let Food = require("../models/foodExtended");
+let Food = require("../models/foodFromList");
 
 // /api/projects
 router.get("/", function(req, res, next) {
@@ -26,7 +26,7 @@ router.get("/:id", function(req, res, next) {
 // /api/projects
 router.post("/", (req, res, next) => {
   Project.create({
-    product_name: req.body.product_name,
+    name: req.body.name,
     code: req.body.code,
     foodfromlists: req.body.foodfromlists
     // owner: req.user._id

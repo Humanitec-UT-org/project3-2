@@ -3,7 +3,7 @@ import axios from "axios";
 
 class AddProject extends React.Component {
   state = {
-    product_name: "",
+    name: "",
     code: "",
     foodfromlists: ""
   };
@@ -15,7 +15,7 @@ class AddProject extends React.Component {
       .post("/api/projects", this.state)
       .then(response => {
         this.setState({
-          product_name: "",
+          name: "",
           code: "",
           foodfromlists: ""
         });
@@ -29,7 +29,7 @@ class AddProject extends React.Component {
 
   changeNameHandler = event => {
     this.setState({
-      product_name: event.target.value
+      name: event.target.value
     });
   };
 
