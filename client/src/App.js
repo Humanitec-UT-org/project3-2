@@ -1,6 +1,8 @@
 import React from "react";
 import axios from "axios";
-
+import "react-notifications-component/dist/theme.css";
+import "animate.css";
+import ReactNotifications from "react-notifications-component";
 import { Redirect, Switch, Route } from "react-router-dom";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
@@ -10,6 +12,7 @@ import "./App.css";
 import Profile from "./components/Profile";
 import Home from "./components/Home";
 import AddFoodItem from "./components/AddFoodItem";
+import $ from "jquery";
 
 class App extends React.Component {
   state = {
@@ -80,11 +83,6 @@ class App extends React.Component {
   render() {
     return (
       <div className="Main">
-        Hello,
-        {this.state.loggedInUser
-          ? this.state.loggedInUser.username
-          : "Stranger"}
-        !
         <Navbar
           updateUser={this.updateUserHandler}
           user={this.state.loggedInUser}
@@ -110,7 +108,12 @@ class App extends React.Component {
           <Route
             path="/scan"
             render={() => {
-              return <AddFoodItem />;
+              return (
+                <div>
+                  <ReactNotifications />
+                  <AddFoodItem />
+                </div>
+              );
             }}
           ></Route>
           <Route

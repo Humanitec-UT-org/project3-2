@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Form, Button } from "react-bootstrap";
-// here manual search will be shown
-
+import $ from "jquery";
 import SingleFoodItem from "./SingleFoodItem";
+import "./styleScrollBar.css";
+
 class ManualSearch extends Component {
   constructor() {
     super();
@@ -11,6 +12,21 @@ class ManualSearch extends Component {
       searchTerm: [],
       foods: []
     };
+  }
+  componentDidMount() {
+    $(function() {
+      $(window).on("load", function() {
+        $("#scroll3").mCustomScrollbar({
+          scrollButtons: {
+            enable: true
+          },
+          theme: "dark-thin",
+          scrollbarPosition: "outside",
+          autoHideScrollbar: false,
+          alwaysShowScrollbar: 2
+        });
+      });
+    });
   }
   getFoodBySearch = () => {
     axios
@@ -34,18 +50,46 @@ class ManualSearch extends Component {
   };
 
   render() {
+    const icon = (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        class="feather feather-search"
+      >
+        <circle cx="11" cy="11" r="8"></circle>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+      </svg>
+    );
     return (
-      <div className="content">
-        <h1>
+      <div>
+        <div
+          id="scroll3"
+          className="cardScroll w-50 card mt-4 card-body mCustomScrollbar"
+          data-mcs-theme="minimal-dark"
+          data-mcs-auto-hide-scrollbar="true"
+          ref={a => (this._acc = a)}
+          onClick={this._handleClick}
+        >
+          {this.props.children}
           result:
-          {this.state.foods.map(food => (
-            <SingleFoodItem
-              item={food}
-              addToProfile={this.props.addToProfile}
-              // deleteItem={this.props.deleteItem}
-            />
-          ))}
-        </h1>
+          <h4 id="list-item">
+            {this.state.foods.map(food => (
+              <SingleFoodItem
+                item={food}
+                addToProfile={this.props.addToProfile}
+                deleteItem={this.props.deleteItem}
+              />
+            ))}
+          </h4>
+        </div>
+        {/* </div> */}
         <div className="input-group-prepend justify-content-center">
           <Form onSubmit={this.handleFormSubmit}>
             <input
@@ -61,7 +105,7 @@ class ManualSearch extends Component {
               type="text"
               name="searchTerm"
             >
-              search
+              {icon}
             </Button>
           </Form>
         </div>

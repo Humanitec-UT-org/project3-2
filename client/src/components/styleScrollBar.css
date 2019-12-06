@@ -1,0 +1,28 @@
+@import "https://cdn.rawgit.com/malihu/malihu-custom-scrollbar-plugin/master/jquery.mCustomScrollbar.concat.min.js";
+@import "https://cdn.rawgit.com/malihu/malihu-custom-scrollbar-plugin/master/jquery.mCustomScrollbar.css";
+
+.cardScroll {
+  background-color: #09d3ac;
+  height: 150px;
+  position: relative;
+  overflow: auto;
+}
+
+/* Control the position of the "outside" scrollbar */
+.mCSB_outside + .mCSB_scrollTools {
+  right: -35px;
+}
+/* $(function() {
+    $(window).on("load", function() {
+      $("#scroll3").mCustomScrollbar({
+        scrollButtons: {
+          enable: true
+        },
+        theme: "dark-thin",
+        scrollbarPosition: "outside",
+        autoHideScrollbar: false,
+        alwaysShowScrollbar: 2
+      });
+    });
+  });
+   */

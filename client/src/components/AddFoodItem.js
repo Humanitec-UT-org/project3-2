@@ -1,13 +1,26 @@
 import React from "react";
 import axios from "axios";
+//https://alligator.io/react/react-notifications-component/
+import { store } from "react-notifications-component";
+import "react-notifications-component/dist/theme.css";
+import "animate.css";
+import { Form } from "react-bootstrap";
+import validate from "./validate";
 
 class AddFoodItem extends React.Component {
   state = {
     name: "",
-    emission: ""
+    emission: "",
+    errors: []
   };
 
   submitHandler = event => {
+    const { name, emission } = this.state;
+    const errors = validate(name, emission);
+    if (errors.length > 0) {
+      this.setState({ errors });
+    }
+
     event.preventDefault();
     // send the data to the backend
     axios
@@ -40,24 +53,75 @@ class AddFoodItem extends React.Component {
 
   render() {
     return (
-      <div>
-        <h3>Add a new Product: </h3>
-        <form onSubmit={this.submitHandler}>
-          <input
-            onChange={this.changeNameHandler}
-            value={this.state.name}
-            type="text"
-            placeholder="Name"
-          ></input>
-          <br></br>
-          <input
-            onChange={this.changeEmissionHandler}
-            value={this.state.emission}
-            type="text"
-            placeholder="Emission"
-          ></input>
-          <button type="submit">Submit</button>
-        </form>
+      <div className="login">
+        <div className="container-fluid">
+          <div className="row no-gutter">
+            <div className="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
+            <div className="col-md-8 col-lg-6">
+              <div className="login d-flex align-items-center py-5">
+                <div className="container">
+                  <div className="row">
+                    <div className="col-md-9 col-lg-8 mx-auto">
+                      <h3 className="login-heading mb-4">Add a new Product:</h3>
+                      <Form onSubmit={this.submitHandler}>
+                        <div className="form-label-group">
+                          <input
+                            type="text"
+                            id="inputName"
+                            className="form-control"
+                            placeholder="Product Name"
+                            name="productname"
+                            onChange={this.changeNameHandler}
+                            value={this.state.name}
+                            required
+                            autoFocus
+                          ></input>
+                          <label htmlFor="inputName">Productname</label>
+                        </div>
+                        <div className="form-label-group">
+                          <input
+                            type="number"
+                            id="inputEmission"
+                            className="form-control"
+                            placeholder="Emission"
+                            name="emission"
+                            onChange={this.changeEmissionHandler}
+                            value={this.state.emission}
+                            required
+                          ></input>
+                          <label htmlFor="inputEmission">Emission</label>
+                        </div>
+                        <button
+                          className="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
+                          type="submit"
+                          onClick={() => {
+                            store.addNotification({
+                              title:
+                                `${this.state.name}` +
+                                " was added successfully!",
+                              message:
+                                "You can now search for " +
+                                `${this.state.name}`,
+                              type: "default", // 'default', 'success', 'info', 'warning'
+                              container: "bottom-left", // where to position the notifications
+                              animationIn: ["animated", "fadeIn"], // animate.css classes that's applied
+                              animationOut: ["animated", "fadeOut"], // animate.css classes that's applied
+                              dismiss: {
+                                duration: 3000
+                              }
+                            });
+                          }}
+                        >
+                          Add
+                        </button>
+                      </Form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
