@@ -1,6 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 
-export class SingleFoodItem extends Component {
+export class SingleFoodItem extends React.Component {
   render() {
     return (
       <div>

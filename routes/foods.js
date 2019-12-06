@@ -2,7 +2,7 @@ let express = require("express");
 let foodsRouter = express.Router();
 let foodFromList = require("../models/foodFromList");
 let User = require("../models/user");
-
+let mongoose = require("mongoose");
 // /api/foods
 
 // GET /api/foods?searchTerm=butter

@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Navbar, Nav, Button, Form, FormControl } from "react-bootstrap";
+import { Navbar, Nav, Button } from "react-bootstrap";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
@@ -36,10 +36,6 @@ export default class myNavbar extends Component {
         <Navbar bg="dark" variant="dark">
           <Navbar.Brand href="/Home">Navbar</Navbar.Brand>
           <Nav className="mr-auto"></Nav>
-          <Form inline>
-            <FormControl type="text" placeholder="Search" className="mr-sm-2" />
-            <Button variant="outline-info">Search</Button>
-          </Form>
 
           {this.props.user ? (
             <div>
@@ -51,6 +47,9 @@ export default class myNavbar extends Component {
               </Link>
               <Link to="/profile">
                 <Button variant="outline-info">Profile</Button>
+              </Link>
+              <Link to="/search">
+                <Button variant="outline-info">Search</Button>
               </Link>
             </div>
           ) : (
