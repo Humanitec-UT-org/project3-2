@@ -13,7 +13,7 @@ var authRouter = require("./routes/auth");
 let projectsRouter = require("./routes/projects");
 let foodsRouter = require("./routes/foods");
 //let productRouter = require("./routes/product");
-let scanRouter = require("./routes/scan");
+let addRouter = require("./routes/add");
 let aboutRouter = require("./routes/about");
 
 var app = express();
@@ -58,7 +58,7 @@ app.use("/api/auth", authRouter);
 app.use("/api/projects", projectsRouter);
 app.use("/api/foods", foodsRouter);
 //app.use("/api/products", productRouter);
-app.use("/api/scan", scanRouter);
+app.use("/api/add", addRouter);
 app.use("api/about", aboutRouter);
 
 // catch 404 and forward to error handler
