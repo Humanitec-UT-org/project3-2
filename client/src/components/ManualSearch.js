@@ -1,33 +1,23 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Form, Button } from "react-bootstrap";
-import $ from "jquery";
+// import $ from "jquery";
 import SingleFoodItem from "./SingleFoodItem";
 import "./styleScrollBar.css";
+import { Toast, ToastBody, ToastHeader } from "react-bootstrap";
 
 class ManualSearch extends Component {
   constructor() {
     super();
     this.state = {
       searchTerm: [],
-      foods: []
+      foods: [],
+      visible: false
     };
   }
-  componentDidMount() {
-    $(function() {
-      $(window).on("load", function() {
-        $("#scroll3").mCustomScrollbar({
-          scrollButtons: {
-            enable: true
-          },
-          theme: "dark-thin",
-          scrollbarPosition: "outside",
-          autoHideScrollbar: false,
-          alwaysShowScrollbar: 2
-        });
-      });
-    });
-  }
+  isVisible = () => {
+    this.setState({ visible: true });
+  };
   getFoodBySearch = () => {
     axios
       .get("/api/foods?searchTerm=" + this.state.searchTerm)
@@ -50,7 +40,7 @@ class ManualSearch extends Component {
   };
 
   render() {
-    const icon = (
+    const searchIcon = (
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="20"
@@ -61,7 +51,7 @@ class ManualSearch extends Component {
         strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
-        class="feather feather-search"
+        className="feather feather-search"
       >
         <circle cx="11" cy="11" r="8"></circle>
         <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
@@ -78,13 +68,15 @@ class ManualSearch extends Component {
           onClick={this._handleClick}
         >
           {this.props.children}
-          result:
+          search result:
           <h4 id="list-item">
+            {console.log("in manualsearch:", this.props.addFood)}
             {this.state.foods.map(food => (
               <SingleFoodItem
                 item={food}
-                addToProfile={this.props.addToProfile}
-                deleteItem={this.props.deleteItem}
+                addFood={this.props.addFood}
+                isVisible={this.isVisible}
+                // deleteItem={this.props.deleteItem}
               />
             ))}
           </h4>
@@ -105,10 +97,26 @@ class ManualSearch extends Component {
               type="text"
               name="searchTerm"
             >
-              {icon}
+              {searchIcon}
             </Button>
           </Form>
         </div>
+        <h1>
+          {this.state.visible ? (
+            <Toast>
+              <ToastHeader>
+                <img
+                  src="holder.js/20x20?text=%20"
+                  className="rounded mr-2"
+                  alt=""
+                />
+                <strong className="mr-auto">Note</strong>
+                <small>success</small>
+              </ToastHeader>
+              <ToastBody>Added to your Profile!</ToastBody>
+            </Toast>
+          ) : null}
+        </h1>
       </div>
     );
   }

@@ -11,8 +11,9 @@ import Foods from "./components/FoodList";
 import "./App.css";
 import Profile from "./components/Profile";
 import Home from "./components/Home";
+import Manualsearch from "./components/ManualSearch";
 import AddFoodItem from "./components/AddFoodItem";
-import $ from "jquery";
+import SingleFoodItem from "./components/SingleFoodItem";
 
 class App extends React.Component {
   state = {
@@ -21,8 +22,8 @@ class App extends React.Component {
   };
 
   updateUserHandler = userObj => {
-    // console.log("updating user");
-    // console.log(userObj);
+    console.log("updating user");
+    console.log(userObj);
     this.setState({
       loggedInUser: userObj
     });
@@ -53,8 +54,9 @@ class App extends React.Component {
   };
 
   addFoodHandler = foodItem => {
+    let newFoodItems = [...this.state.loggedInUser.addedFooditems, foodItem];
     axios
-      .post("/api/foods", { id: foodItem._id })
+      .post("/api/foods", { addedFooditems: newFoodItems })
       .then(response => {
         this.setState({
           loggedInUser: {
@@ -64,20 +66,6 @@ class App extends React.Component {
         });
       })
       .catch(() => {});
-  };
-
-  deleteItemHandler = (foodItem, index) => {
-    console.log("deleting ", foodItem);
-    axios.delete("/api/foods/delete/" + foodItem._id).then(response => {
-      // const myFoodItemsCopy = [...this.state.loggedInUser.addedFooditems];
-      // myFoodItemsCopy.splice(index + 1, 1);
-      this.setState({
-        loggedInUser: {
-          ...this.state.loggedInUser,
-          addedFooditems: response.data
-        }
-      });
-    });
   };
 
   render() {
@@ -106,7 +94,7 @@ class App extends React.Component {
             }}
           ></Route>
           <Route
-            path="/scan"
+            path="/add"
             render={() => {
               return (
                 <div>
@@ -117,16 +105,20 @@ class App extends React.Component {
             }}
           ></Route>
           <Route
+            path="/search"
+            render={() => {
+              return (
+                <div>
+                  <Manualsearch addFood={this.addFoodHandler}></Manualsearch>
+                </div>
+              );
+            }}
+          ></Route>
+          <Route
             path="/profile"
             render={() => {
               if (this.state.loggedInUser) {
-                return (
-                  <Profile
-                    user={this.state.loggedInUser}
-                    addFood={this.addFoodHandler}
-                    deleteItem={this.deleteItemHandler}
-                  ></Profile>
-                );
+                return <Profile user={this.state.loggedInUser}></Profile>;
               } else {
                 return <Redirect to="/"></Redirect>;
               }

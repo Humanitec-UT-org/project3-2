@@ -1,31 +1,34 @@
 import React from "react";
 import axios from "axios";
 //https://alligator.io/react/react-notifications-component/
-import { store } from "react-notifications-component";
+
 import "react-notifications-component/dist/theme.css";
 import "animate.css";
-import { Form } from "react-bootstrap";
-import validate from "./validate";
+import { Form, Toast, ToastBody, ToastHeader } from "react-bootstrap";
 
 class AddFoodItem extends React.Component {
   state = {
     name: "",
     emission: "",
-    errors: []
+    errors: false
   };
 
   submitHandler = event => {
-    const { name, emission } = this.state;
-    const errors = validate(name, emission);
-    if (errors.length > 0) {
-      this.setState({ errors });
-    }
-
     event.preventDefault();
     // send the data to the backend
     axios
       .post("/api/foods/add-to-list", this.state)
       .then(response => {
+        console.log("hi", response.data.message);
+        if (response.data.message) {
+          this.setState({ errors: true });
+          console.log("this.setState", this.setState);
+        } else {
+          this.setState({
+            errors: false
+          });
+        }
+        console.log(response.data, "response");
         this.setState({
           name: "",
           emission: ""
@@ -52,6 +55,7 @@ class AddFoodItem extends React.Component {
   };
 
   render() {
+    console.log(this.state.errors);
     return (
       <div className="login">
         <div className="container-fluid">
@@ -91,29 +95,64 @@ class AddFoodItem extends React.Component {
                           ></input>
                           <label htmlFor="inputEmission">Emission</label>
                         </div>
+                        <div className="input-group mb-3">
+                          <div className="input-group-prepend">
+                            <label
+                              className="input-group-text"
+                              htmlFor="inputGroupSelect01"
+                            >
+                              Options
+                            </label>
+                          </div>
+                          <select
+                            className="custom-select"
+                            id="inputGroupSelect01"
+                            defaultValue={"DEFAULT"}
+                          >
+                            <option value="DEFAULT" disabled>
+                              Choose...
+                            </option>
+
+                            <option value="1">dairy</option>
+                            <option value="2">fat</option>
+                            <option value="3">fish</option>
+                            <option value="3">fruits</option>
+                            <option value="3">grain</option>
+                            <option value="3">meat</option>
+                            <option value="3">seed</option>
+                            <option value="3">spices</option>
+                            <option value="3">vegetable</option>
+                          </select>
+                        </div>
+
                         <button
                           className="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
                           type="submit"
                           onClick={() => {
-                            store.addNotification({
-                              title:
-                                `${this.state.name}` +
-                                " was added successfully!",
-                              message:
-                                "You can now search for " +
-                                `${this.state.name}`,
-                              type: "default", // 'default', 'success', 'info', 'warning'
-                              container: "bottom-left", // where to position the notifications
-                              animationIn: ["animated", "fadeIn"], // animate.css classes that's applied
-                              animationOut: ["animated", "fadeOut"], // animate.css classes that's applied
-                              dismiss: {
-                                duration: 3000
-                              }
-                            });
+                            console.log("addbutton", this.state.errors);
                           }}
                         >
                           Add
                         </button>
+                        <h1 style={{ color: "red" }}>
+                          {/* {this.state.errors ? "you already posted" : ""} */}
+                          {this.state.errors ? (
+                            <Toast>
+                              <ToastHeader>
+                                <img
+                                  src="holder.js/20x20?text=%20"
+                                  className="rounded mr-2"
+                                  alt=""
+                                />
+                                <strong className="mr-auto">Bootstrap</strong>
+                                <small>11 mins ago</small>
+                              </ToastHeader>
+                              <ToastBody>
+                                Sorry, but xxx is already added
+                              </ToastBody>
+                            </Toast>
+                          ) : null}
+                        </h1>
                       </Form>
                     </div>
                   </div>

@@ -8,7 +8,8 @@ import "animate.css";
 class Signup extends React.Component {
   state = {
     username: "",
-    password: ""
+    password: "",
+    errors: []
   };
 
   submitHandler = event => {
@@ -17,6 +18,7 @@ class Signup extends React.Component {
       .post("/api/auth/signup", this.state)
       .then(response => {
         this.props.updateUser(response.data);
+        console.log(response.data);
         this.props.history.push("/profile");
       })
       .catch(err => console.log("i want to grab this error", err));
@@ -68,7 +70,6 @@ class Signup extends React.Component {
                             pattern=".{8,}"
                             required
                             title="8 characters minimum"
-                            required
                           />
                           <label htmlFor="inputPassword">Password</label>
                         </div>
@@ -85,7 +86,11 @@ class Signup extends React.Component {
                           className="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
                           type="submit"
                           onClick={() => {
-                            if (!this.updateUser) {
+                            console.log(
+                              "I submit signup",
+                              this.props.updateUser()
+                            );
+                            if (!this.props.updateUser) {
                               store.addNotification({
                                 title: "Food Added",
                                 message: "Item was added successfully",

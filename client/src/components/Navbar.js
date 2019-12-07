@@ -1,5 +1,12 @@
 import React, { Component } from "react";
-import { Navbar, Nav, Button } from "react-bootstrap";
+import {
+  Navbar,
+  Nav,
+  Button,
+  ButtonToolbar,
+  Tooltip,
+  OverlayTrigger
+} from "react-bootstrap";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
@@ -39,18 +46,35 @@ export default class myNavbar extends Component {
 
           {this.props.user ? (
             <div>
-              <Button variant="outline-info" onClick={this.LogoutHandler}>
-                Logout
-              </Button>
-              <Link to="/scan">
-                <Button variant="outline-info">Add</Button>
-              </Link>
-              <Link to="/profile">
-                <Button variant="outline-info">Profile</Button>
-              </Link>
-              <Link to="/search">
-                <Button variant="outline-info">Search</Button>
-              </Link>
+              <ButtonToolbar>
+                <Button variant="outline-info" onClick={this.LogoutHandler}>
+                  Logout
+                </Button>
+
+                <Link to="/add">
+                  <Button variant="outline-info">Add</Button>
+                </Link>
+
+                <Link to="/profile">
+                  <Button variant="outline-info">Profile</Button>
+                </Link>
+
+                {["bottom"].map(placement => (
+                  <OverlayTrigger
+                    key={placement}
+                    placement={placement}
+                    overlay={
+                      <Tooltip id={`tooltip-${placement}`}>
+                        Search for food you can add to your profile
+                      </Tooltip>
+                    }
+                  >
+                    <Link to="/search">
+                      <Button variant="outline-info">Search</Button>
+                    </Link>
+                  </OverlayTrigger>
+                ))}
+              </ButtonToolbar>
             </div>
           ) : (
             <div>

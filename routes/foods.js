@@ -24,7 +24,7 @@ foodsRouter.post("/", (req, res, next) => {
   console.log("food POST is here");
   User.findByIdAndUpdate(
     { _id: req.user.id },
-    { $push: { addedFooditems: req.body.id } },
+    { $set: { addedFooditems: req.body.addedFooditems } },
     { new: true }
   )
     .populate("addedFooditems")
@@ -33,43 +33,76 @@ foodsRouter.post("/", (req, res, next) => {
       res.json(userObj.addedFooditems);
     });
 });
+
+// POST /api/foods/user-list = user added auf profil
+foodsRouter.get("/user-list", (req, res, next) => {
+  User.findById(req.user.id)
+    .populate("addedFooditems")
+    .then(userObj => {
+      res.json(userObj.addedFooditems);
+    });
+});
+
+// // POST /api/foods = user added auf profil
+// foodsRouter.post("/", (req, res, next) => {
+//   console.log("food POST is here");
+//   User.findByIdAndUpdate(
+//     { _id: req.user.id },
+//     { $push: { addedFooditems: req.body.id } },
+//     { new: true }
+//   )
+//     .populate("addedFooditems")
+//     .then(userObj => {
+//       console.log("response from api/foods", userObj.addedFooditems);
+//       res.json(userObj.addedFooditems);
+//     });
+// });
 
 // POST /api/foods  neues produkt
 foodsRouter.post("/add-to-list", (req, res, next) => {
-  foodFromList
-    .create({
-      name: req.body.name,
-      code: req.body.code
-      // owner: req.user._id
-    })
-    .then(newFoodFromList => {
-      res.json(newFoodFromList);
-    })
-    .catch(err => {
-      res.json(err);
-    });
+  foodFromList.count({ name: req.body.name }).then(count => {
+    if (count > 0) {
+      res.json({ message: "food item already exists" });
+      return;
+    } else {
+      foodFromList
+        .create({
+          name: req.body.name,
+          code: req.body.code
+          // owner: req.user._id
+        })
+        .then(newFoodFromList => {
+          console.log("newFoodFromList", newFoodFromList);
+          res.json(newFoodFromList);
+        })
+
+        .catch(err => {
+          res.json(err);
+        });
+    }
+  });
 });
 
-// // delete food for later /api/foods/id
-foodsRouter.delete("/delete/:id", (req, res, next) => {
-  console.log("food POST delete on its way " + req.params.id);
+// // // delete food for later /api/foods/id
+// foodsRouter.delete("/delete/:id", (req, res, next) => {
+//   console.log("food POST delete on its way " + req.params.id);
 
-  if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
-    res.status(400).json({ message: "Specified id is not valid" });
-    return;
-  }
+//   if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+//     res.status(400).json({ message: "Specified id is not valid" });
+//     return;
+//   }
 
-  User.findByIdAndUpdate(
-    { _id: req.user.id },
-    { $pull: { addedFooditems: req.params.id } },
-    { new: true }
-  )
-    .populate("addedFooditems")
-    .then(userObj => {
-      console.log("response from api/foods", userObj.addedFooditems);
-      res.json(userObj.addedFooditems);
-    });
-});
+//   User.findByIdAndUpdate(
+//     { _id: req.user.id },
+//     { $pull: { addedFooditems: req.params.id } },
+//     { new: true }
+//   )
+//     .populate("addedFooditems")
+//     .then(userObj => {
+//       console.log("response from api/foods", userObj.addedFooditems);
+//       res.json(userObj.addedFooditems);
+//     });
+// });
 //   console.log("food POST delete on its way");
 //   if (id.match(/^[0-9a-fA-F]{24}$/)) {
 //     foodFromList
