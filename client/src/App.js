@@ -13,8 +13,7 @@ import Profile from "./components/Profile";
 import Home from "./components/Home";
 import Manualsearch from "./components/ManualSearch";
 import AddFoodItem from "./components/AddFoodItem";
-import SingleFoodItem from "./components/SingleFoodItem";
-
+import About from "./components/About";
 class App extends React.Component {
   state = {
     loggedInUser: this.props.user,
@@ -110,6 +109,16 @@ class App extends React.Component {
               return (
                 <div>
                   <Manualsearch addFood={this.addFoodHandler}></Manualsearch>
+                </div>
+              );
+            }}
+          ></Route>
+          <Route
+            path="/about"
+            render={() => {
+              return (
+                <div>
+                  <About />
                 </div>
               );
             }}

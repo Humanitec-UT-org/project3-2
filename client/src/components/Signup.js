@@ -85,6 +85,10 @@ class Signup extends React.Component {
                         <button
                           className="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
                           type="submit"
+                          style={{
+                            backgroundColor: "#48A3B8",
+                            borderColor: "#48A3B8"
+                          }}
                           onClick={() => {
                             console.log(
                               "I submit signup",

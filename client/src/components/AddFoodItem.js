@@ -60,7 +60,71 @@ class AddFoodItem extends React.Component {
       <div className="login">
         <div className="container-fluid">
           <div className="row no-gutter">
-            <div className="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
+            {/* */}
+
+            {/* start */}
+            <div className="col-md-8 col-lg-6">
+              <div className="login d-flex align-items-center py-5">
+                <div className="container">
+                  <div className="row">
+                    <div className="col-md-9 col-lg-8 mx-auto">
+                      <h3 className="login-heading mb-4">Welcome back</h3>
+                      <Form onSubmit={this.submitHandler}>
+                        <div className="form-label-group">
+                          <input
+                            type="text"
+                            id="inputEmail"
+                            className="form-control"
+                            placeholder="Username"
+                            name="username"
+                            value={this.state.username}
+                            onChange={e => this.changeHandler(e)}
+                            required
+                            autoFocus
+                          />
+                          <label htmlFor="inputEmail">Username</label>
+                        </div>
+
+                        <div className="form-label-group">
+                          <input
+                            type="password"
+                            id="inputPassword"
+                            className="form-control"
+                            placeholder="Password"
+                            name="password"
+                            value={this.state.password}
+                            onChange={e => this.changeHandler(e)}
+                            required
+                          />
+                          <label htmlFor="inputPassword">Password</label>
+                        </div>
+
+                        <div className="custom-control custom-checkbox mb-3">
+                          <input
+                            type="checkbox"
+                            className="custom-control-input"
+                            id="customCheck1"
+                          />
+                        </div>
+
+                        <button
+                          className="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
+                          type="submit"
+                          style={{
+                            backgroundColor: "#48A3B8",
+                            borderColor: "#48A3B8"
+                          }}
+                        >
+                          Login
+                        </button>
+                      </Form>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* end */}
             <div className="col-md-8 col-lg-6">
               <div className="login d-flex align-items-center py-5">
                 <div className="container">
@@ -85,12 +149,11 @@ class AddFoodItem extends React.Component {
                         <div className="form-label-group">
                           <input
                             type="number"
-                            id="inputEmission"
                             className="form-control"
                             placeholder="Emission"
-                            name="emission"
                             onChange={this.changeEmissionHandler}
                             value={this.state.emission}
+                            pattern="[0-9]+([\.,][0-9]?"
                             required
                           ></input>
                           <label htmlFor="inputEmission">Emission</label>
@@ -124,9 +187,15 @@ class AddFoodItem extends React.Component {
                             <option value="3">vegetable</option>
                           </select>
                         </div>
+                        {/* background-color: #48A3B8;
+    border-color: #48A3B8; */}
 
                         <button
                           className="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
+                          style={{
+                            backgroundColor: "#48A3B8",
+                            borderColor: "#48A3B8"
+                          }}
                           type="submit"
                           onClick={() => {
                             console.log("addbutton", this.state.errors);
@@ -148,7 +217,7 @@ class AddFoodItem extends React.Component {
                                 <small>11 mins ago</small>
                               </ToastHeader>
                               <ToastBody>
-                                Sorry, but xxx is already added
+                                Sorry, but this item already exists
                               </ToastBody>
                             </Toast>
                           ) : null}
