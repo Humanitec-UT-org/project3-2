@@ -1,31 +1,39 @@
 import React from "react";
-import PlusCircle from "./Plus-Circle";
-import { store } from "react-notifications-component";
-import "react-notifications-component/dist/theme.css";
-import "animate.css";
+import PlusCircle from "../components/styleLogos/Plus-Circle";
+
 export class SingleFoodItem extends React.Component {
   constructor() {
     super();
     this.state = {
-      // visible: false
+      visible: false
     };
   }
   changeVisible = () => {
     this.props.isVisible();
   };
-  // handleItem = () => {
-  //   this.props.addFood(this.props.item);
-  //   this.setState({
-  //     visible: true
-  //   });
-  // };
+  handleItem = () => {
+    this.props.addFood(this.props.item);
+    console.log("hello", this.props.item.name);
+    this.props.isVisible();
+  };
+
   render() {
     return (
       <div>
-        {this.props.item.name}
-        <button onClick={this.changeVisible}>
-          <PlusCircle />
-        </button>
+        <table>
+          <tr>
+            <th width={100}>{this.props.item.name}</th>
+            <th>
+              <button
+                onClick={this.handleItem}
+                style={{ backgroundColor: "transparent" }}
+              >
+                <PlusCircle />
+              </button>
+            </th>
+          </tr>
+        </table>
+        {/* exmaple show true onClick  */}
         {/* this works! */}
         {/* <h1>{this.state.visible ? "item added true" : ""}</h1> */}
       </div>

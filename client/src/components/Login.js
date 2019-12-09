@@ -37,13 +37,53 @@ class Login extends React.Component {
       <div className="login">
         <div className="container-fluid">
           <div className="row no-gutter">
-            <div className="d-none d-md-flex col-md-4 col-lg-6 bg-image"></div>
+            {/* start */}
             <div className="col-md-8 col-lg-6">
               <div className="login d-flex align-items-center py-5">
                 <div className="container">
                   <div className="row">
                     <div className="col-md-9 col-lg-8 mx-auto">
-                      <h3 className="login-heading mb-4">Welcome</h3>
+                      <h3 className="login-heading mb-4">Success</h3>
+                      <div className="form-label-group">
+                        <p>you successfully did this & that</p>
+
+                        <div className="container">
+                          <div
+                            id="scroll3"
+                            className="cardScroll w-80 card-body"
+                            data-mcs-theme="minimal-dark"
+                            data-mcs-auto-hide-scrollbar="true"
+                            ref={a => (this._acc = a)}
+                            onClick={this._handleClick}
+                          >
+                            {this.props.children}
+                            search result:
+                            <h4 id="list-item">
+                              sdajksd
+                              <ul>
+                                <li>sdj</li>
+                                <li>sd</li> <li>sdj</li>
+                                <li>sd</li> <li>sdj</li>
+                                <li>sd</li> <li>sdj</li>
+                                <li>sd</li> <li>sdj</li>
+                                <li>sd</li>
+                              </ul>
+                            </h4>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/* end */}
+            <div className="col-md-8 col-lg-6">
+              <div className="login d-flex align-items-center py-5">
+                <div className="container">
+                  <div className="row">
+                    <div className="col-md-9 col-lg-8 mx-auto">
+                      <h3 className="login-heading mb-4">Welcome back</h3>
                       <Form onSubmit={this.submitHandler}>
                         <div className="form-label-group">
                           <input
@@ -85,11 +125,13 @@ class Login extends React.Component {
                         <button
                           className="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
                           type="submit"
+                          style={{
+                            backgroundColor: "#48A3B8",
+                            borderColor: "#48A3B8"
+                          }}
                         >
                           Login
                         </button>
-
-                        <div className="text-center"></div>
                       </Form>
                     </div>
                   </div>

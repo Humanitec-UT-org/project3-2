@@ -2,7 +2,16 @@ import React, { Component } from "react";
 import ManualSearch from "./ManualSearch";
 import ReactMinimalPieChart from "react-minimal-pie-chart";
 import axios from "axios";
-
+import Canvas from "./styleCanvas/Canvas";
+import CanvasFruits from "./styleCanvas/CanvasFruits";
+import CanvasFish from "./styleCanvas/CanvasFish";
+import CanvasFat from "./styleCanvas/CanvasFat";
+import CanvasDairy from "./styleCanvas/CanvasDairy";
+import CanvasGrain from "./styleCanvas/CanvasGrain";
+import CanvasMeat from "./styleCanvas/CanvasMeat";
+import CanvasSeed from "./styleCanvas/CanvasSeed";
+import CanvasSpice from "./styleCanvas/CanvasSpice";
+import CanvasVegetable from "./styleCanvas/CanvasVegetable";
 import Trash from "./Trash";
 
 // fat
@@ -87,15 +96,14 @@ export class Profile extends Component {
     console.log("leftoverEmission", leftoverEmission);
     //const sum = this.props.user.addedFooditems[0].emission;
     let styles1 = {
-      borderColor: "red"
+      marginLeft: "100"
     };
     return (
       <div>
-        {console.log(this)}
-        Hello,{this.state.user}
+        {/* {console.log(this)}
+        Hello,{this.state.user} */}
         {this.props.user ? this.props.user.username : "Stranger"} <br></br>
-        Summe: {sum}
-        <div className="container" style={styles1}>
+        <div className="container" style={{ margin: "0 0 60 60" }}>
           <div className="row">
             <div className="col-8">
               <ReactMinimalPieChart
@@ -105,18 +113,24 @@ export class Profile extends Component {
                 cx={50}
                 cy={50}
                 data={[
-                  { title: "Fish", value: fishSum, color: "#E38627" },
-                  // orange
-                  { title: "Spices", value: spiceSum, color: "#ea899a" },
-                  // rosa
-                  { title: "Fruits", value: fruitSum, color: "#00FF00" },
+                  { title: "Fish", value: fishSum, color: "#007499" },
+                  //
+                  { title: "Spices", value: spiceSum, color: "#E0D35C" },
+                  // gelb
+                  { title: "Fruits", value: fruitSum, color: "#88D176" },
                   // grün
-                  { titel: "Dairy", value: dairySum, color: "#add8e6" },
+                  { titel: "Dairy", value: dairySum, color: "#9335AA" },
                   // blau
-                  { titel: "Seed", value: seedSum, color: "#add8e6" },
+                  { titel: "Seed", value: seedSum, color: "#D6872C" },
+                  // orange
+                  { titel: "Grain", value: grainSum, color: "#E91C59" },
                   // blau
-                  { titel: "Grain", value: grainSum, color: "#add8e6" },
-                  // blau
+                  // MISSING! veg
+                  { titel: "Veggies", value: grainSum, color: "#7ED5F0" },
+                  // MISSING Meat
+                  { titel: "Meat", value: grainSum, color: "#794E1B" },
+                  // MISSING fat FF0312
+                  { titel: "Fat", value: grainSum, color: "#FF0312" },
                   {
                     title: "Leftover",
                     value: leftoverEmission,
@@ -132,7 +146,7 @@ export class Profile extends Component {
                 onMouseOut={undefined}
                 onMouseOver={undefined}
                 paddingAngle={0}
-                radius={40}
+                radius={35}
                 rounded={false}
                 startAngle={0}
                 viewBoxSize={[100, 100]}
@@ -148,35 +162,88 @@ export class Profile extends Component {
               bla lorem ipsum bla lorem ipsum bla lorem ipsum bla
             </div>
             <div className="col-4">
+              <h5 style={{ fontWeight: "700" }}>
+                Items you added to your foodprint:
+              </h5>
               <div
                 id="scroll3"
-                className="cardScroll w-60 card  card-body mCustomScrollbar"
-                data-mcs-theme="minimal-dark"
+                className="cardScroll w-60 card"
                 data-mcs-auto-hide-scrollbar="true"
                 ref={a => (this._acc = a)}
                 onClick={this._handleClick}
+                style={{ backgroundColor: "transparent" }}
               >
                 {this.props.children}
-                added to your profile result
-                <h4 id="list-item">
+                <p id="list-item">
                   {this.state.addedFooditems.map(item => (
                     <div>
-                      <li>
-                        {item.name}
-                        <button
-                          onClick={() => {
-                            // help needed
-                            console.log(item);
-                            this.deleteItemHandler(item);
-                          }}
-                        >
-                          <Trash />
-                        </button>
-                      </li>
+                      {item.name}
+                      <button
+                        style={{ backgroundColor: "transparent" }}
+                        onClick={() => {
+                          // help needed
+                          console.log(item);
+                          this.deleteItemHandler(item);
+                        }}
+                      >
+                        <Trash />
+                      </button>
                     </div>
                   ))}
-                </h4>
+                </p>
               </div>
+              <table className="table" style={{ padding: "0.5rem" }}>
+                <tr>
+                  <th width="20" height="20">
+                    <CanvasFruits></CanvasFruits>
+                  </th>
+                  <th>fruits</th>
+                  <th width="20" height="20">
+                    <CanvasVegetable></CanvasVegetable>
+                  </th>
+                  <th>vegetable</th>
+                </tr>
+                <tr>
+                  <td>
+                    <CanvasFish></CanvasFish>
+                  </td>
+                  <td>fish</td>
+                  <th width="20" height="20">
+                    <CanvasSpice></CanvasSpice>
+                  </th>
+                  <th>spice</th>
+                </tr>
+                <tr>
+                  <th width="20" height="20">
+                    <CanvasFat></CanvasFat>
+                  </th>
+                  <th>fat</th>
+                  <th width="20" height="20">
+                    <CanvasMeat>meat</CanvasMeat>
+                  </th>
+                  <th>meat</th>
+                </tr>
+                <tr>
+                  <th width="20" height="20">
+                    <CanvasDairy>dairy</CanvasDairy>
+                  </th>
+                  <th>dairy</th>
+                  <th width="20" height="20">
+                    <CanvasSeed>seed</CanvasSeed>
+                  </th>
+                  <th>seed</th>
+                </tr>
+                <tr>
+                  <th width="20" height="20">
+                    <CanvasGrain>grain</CanvasGrain>
+                  </th>
+                  <th>grain</th>
+                  <th width="20" height="20">
+                    Summe:
+                  </th>
+                  <th> {sum}</th>
+                </tr>
+              </table>
               absatz rechts neben dem chart lorem ipsum bla lorem ipsum bla
               lorem ipsum bla lorem ipsum bla lorem ips lorem ipsum bla lorem
               ipsum bla lorem ipsum bla lorem ipsum bla lorem ips lorem ipsum
