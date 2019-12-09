@@ -9,11 +9,8 @@ import { BrowserRouter } from "react-router-dom";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "@devexpress/dx-react-chart-bootstrap4/dist/dx-react-chart-bootstrap4.css";
-// import "https://cdn.rawgit.com/malihu/malihu-custom-scrollbar-plugin/master/jquery.mCustomScrollbar.concat.min.js";
-// import "https://cdn.rawgit.com/malihu/malihu-custom-scrollbar-plugin/master/jquery.mCustomScrollbar.css";
 
-document.getElementById("root").innerText =
-  "The React app has not connected to the backend yet.";
+document.getElementById("root").innerText = "Loading...";
 
 // makes sure the entire App only gets rendered AFTER we know if the user is logged in
 axios
