@@ -10,8 +10,10 @@ class AddFoodItem extends React.Component {
   state = {
     name: "",
     emission: "",
-    errors: "",
-    option: "dairy"
+    group: "",
+    errors: false,
+    option: ""
+
   };
 
   submitHandler = event => {
@@ -33,7 +35,8 @@ class AddFoodItem extends React.Component {
         console.log(response.data, "response");
         this.setState({
           name: "",
-          emission: ""
+          emission: "",
+          group: ""
         });
 
         this.props.addProject();

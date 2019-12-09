@@ -9,7 +9,7 @@ class Canvas extends React.Component {
 
     ctx.beginPath();
     ctx.arc(10, 12, 9, 0, 2 * Math.PI);
-    ctx.fillStyle = "blue";
+    ctx.fillStyle = "black";
     ctx.fill();
     ctx.stroke();
   }

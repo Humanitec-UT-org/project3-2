@@ -37,7 +37,8 @@ export default class myNavbar extends Component {
       .then(res => {
         console.log(res, "res");
         this.props.updateUser(null);
-        res.render("../");
+        // help needed
+        this.props.history.push("/");
       })
       .catch(err => {
         console.log("something went wrong with Logout", err);

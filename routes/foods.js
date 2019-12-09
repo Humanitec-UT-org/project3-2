@@ -71,6 +71,7 @@ foodsRouter.post("/add-to-list", (req, res, next) => {
           name: req.body.name,
           emission: req.body.emission,
           group: req.body.option
+
         })
         .then(newFoodFromList => {
           console.log("newFoodFromList", newFoodFromList);
