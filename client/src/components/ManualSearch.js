@@ -11,8 +11,7 @@ class ManualSearch extends Component {
     this.state = {
       searchTerm: [],
       foods: [],
-      visible: false,
-
+      visible: false
     };
     this.isVisible = this.isVisible.bind(this);
   }
@@ -114,14 +113,13 @@ class ManualSearch extends Component {
                         </div>
                       </div>
                       <Form onSubmit={this.handleFormSubmit}>
-                        <label for="inputEmission"></label>
+                        <label htmlFor="inputEmission"></label>
                         <div className="form-label-group">
                           <input
                             type="text"
                             className="form-control"
                             id="searchTerm"
                             name="searchTerm"
-                            className="form-control"
                             placeholder="Enter here what you are looking for"
                             onChange={this.changeHandler}
                             required
@@ -134,7 +132,7 @@ class ManualSearch extends Component {
                           className="custom-control-input"
                           id="customCheck1"
                         />
-                        <label for="inputAdding"></label>
+                        <label htmlFor="inputAdding"></label>
                         <button
                           className="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
                           type="submit"

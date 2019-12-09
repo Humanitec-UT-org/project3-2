@@ -43,7 +43,7 @@ class Login extends React.Component {
                 <div className="container">
                   <div className="row">
                     <div className="col-md-9 col-lg-8 mx-auto">
-                      <h3 className="login-heading mb-4"></h3>
+                      <h3 className="login-heading mb-4">&nbsp;</h3>
                       <div className="form-label-group">
                         <div className="container"></div>
                       </div>

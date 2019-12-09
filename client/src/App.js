@@ -22,7 +22,7 @@ class App extends React.Component {
 
   updateUserHandler = userObj => {
     console.log("updating user");
-    console.log(userObj);
+    console.log("i check out the userObj", userObj);
     this.setState({
       loggedInUser: userObj
     });

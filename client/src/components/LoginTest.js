@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import { Form } from "react-bootstrap";
+
 import "./styleLogin.css";
 
 class Login extends React.Component {
@@ -82,6 +82,7 @@ class Login extends React.Component {
                             id="customCheck1"
                           />
                         </div>
+
                         <Link to="/profile/:id">
                           <button
                             className="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"

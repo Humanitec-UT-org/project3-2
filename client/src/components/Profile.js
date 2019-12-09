@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import ManualSearch from "./ManualSearch";
 import ReactMinimalPieChart from "react-minimal-pie-chart";
 import axios from "axios";
 import Canvas from "./styleCanvas/Canvas";
@@ -13,6 +12,7 @@ import CanvasSeed from "./styleCanvas/CanvasSeed";
 import CanvasSpice from "./styleCanvas/CanvasSpice";
 import CanvasVegetable from "./styleCanvas/CanvasVegetable";
 import Trash from "./Trash";
+import { Table } from "react-bootstrap";
 
 // fat
 // meat
@@ -117,14 +117,14 @@ export class Profile extends Component {
     console.log("fishSum", fishSum);
     console.log("leftoverEmission", leftoverEmission);
     //const sum = this.props.user.addedFooditems[0].emission;
-    let styles1 = {
-      marginLeft: "100"
-    };
+
     return (
       <div>
         {/* {console.log(this)}
         Hello,{this.state.user} */}
-        {this.props.user ? this.props.user.username : "Stranger"} <br></br>
+        {/* help needed */}
+        Hi,
+        {this.state.user ? this.state.user.name : "Stranger"} <br></br>
         <div className="container" style={{ margin: "0 0 60 60" }}>
           <div className="row">
             <div className="col-8">
@@ -211,62 +211,68 @@ export class Profile extends Component {
                   ))}
                 </p>
               </div>
-              <table className="table" style={{ padding: "0.5rem" }}>
-                <tr>
-                  <th width="20" height="20">
-                    <CanvasFruits></CanvasFruits>
-                  </th>
-                  <th>fruits</th>
-                  <th width="20" height="20">
-                    <CanvasVegetable></CanvasVegetable>
-                  </th>
-                  <th>vegetable</th>
-                </tr>
-                <tr>
-                  <td>
-                    <CanvasFish></CanvasFish>
-                  </td>
-                  <td>fish</td>
-                  <th width="20" height="20">
-                    <CanvasSpice></CanvasSpice>
-                  </th>
-                  <th>spice</th>
-                </tr>
-                <tr>
-                  <th width="20" height="20">
-                    <CanvasFat></CanvasFat>
-                  </th>
-                  <th>fat</th>
-                  <th width="20" height="20">
-                    <CanvasMeat>meat</CanvasMeat>
-                  </th>
-                  <th>meat</th>
-                </tr>
-                <tr>
-                  <th width="20" height="20">
-                    <CanvasDairy>dairy</CanvasDairy>
-                  </th>
-                  <th>dairy</th>
-                  <th width="20" height="20">
-                    <CanvasSeed>seed</CanvasSeed>
-                  </th>
-                  <th>seed</th>
-                </tr>
-                <tr>
-                  <th width="20" height="20">
-                    <CanvasGrain>grain</CanvasGrain>
-                  </th>
-                  <th>grain</th>
-                  <th width="20" height="20">
-                    Summe:
-                  </th>
-                  <th>
-                    {" "}
-                    {sum} gr <br />
-                    of 1.5 t
-                  </th>
-                </tr>
-              </table>
+              <Table
+                responsive="sm"
+                className="table"
+                style={{ padding: "0.5rem" }}
+              >
+                <tbody>
+                  <tr>
+                    <th width="20" height="20">
+                      <CanvasFruits></CanvasFruits>
+                    </th>
+                    <th>fruits</th>
+                    <th width="20" height="20">
+                      <CanvasVegetable></CanvasVegetable>
+                    </th>
+                    <th>vegetable</th>
+                  </tr>
+                  <tr>
+                    <td>
+                      <CanvasFish></CanvasFish>
+                    </td>
+                    <td>fish</td>
+                    <th width="20" height="20">
+                      <CanvasSpice></CanvasSpice>
+                    </th>
+                    <th>spice</th>
+                  </tr>
+                  <tr>
+                    <th width="20" height="20">
+                      <CanvasFat></CanvasFat>
+                    </th>
+                    <th>fat</th>
+                    <th width="20" height="20">
+                      <CanvasMeat>meat</CanvasMeat>
+                    </th>
+                    <th>meat</th>
+                  </tr>
+                  <tr>
+                    <th width="20" height="20">
+                      <CanvasDairy>dairy</CanvasDairy>
+                    </th>
+                    <th>dairy</th>
+                    <th width="20" height="20">
+                      <CanvasSeed>seed</CanvasSeed>
+                    </th>
+                    <th>seed</th>
+                  </tr>
+                  <tr>
+                    <th width="20" height="20">
+                      <CanvasGrain>grain</CanvasGrain>
+                    </th>
+                    <th>grain</th>
+                    <th width="20" height="20">
+                      Summe:
+                    </th>
+                    <th>
+                      {" "}
+                      {sum} gr <br />
+                      of 1.5 t
+                    </th>
+                  </tr>
+                </tbody>
+              </Table>
               <Canvas /> shows your remaining emission for this month!
               <br />
               blabla

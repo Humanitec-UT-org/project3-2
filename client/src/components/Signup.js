@@ -19,7 +19,7 @@ class Signup extends React.Component {
       .then(response => {
         this.props.updateUser(response.data);
         console.log(response.data);
-        this.props.history.push("/profile");
+        // this.props.history.push("/profile");
       })
       .catch(err => console.log("i want to grab this error", err));
   };

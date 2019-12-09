@@ -18,9 +18,8 @@ export class About extends Component {
                         <h3 className="login-heading mb-4">Info</h3>
                         <div className="form-label-group">
                           <div className="container">
-                            <p>
-                              <u>context</u>
-                            </p>
+                            <u>context</u>
+
                             <div
                               id="scroll3"
                               className="cardScroll w-100 card-body"
@@ -92,15 +91,15 @@ export class About extends Component {
                             >
                               {this.props.children}
 
-                              <p>
+                              <span>
                                 This app was created as the final project of the
                                 Ironhack Web Development Bootcamp. <br />
                                 It is based on MERN stack. <br />
                                 Person behind the scenes:
                                 <br />
                                 Chantal Herrmann <br />
-                                <div class="row">
-                                  <div class="col-2">
+                                <div className="row">
+                                  <div className="col-2">
                                     <a
                                       href="https://github.com/ChantyHe90"
                                       style={{
@@ -111,7 +110,7 @@ export class About extends Component {
                                       <Github />
                                     </a>
                                   </div>
-                                  <div class="col-sm">
+                                  <div className="col-sm">
                                     <a
                                       href="https://www.linkedin.com/in/chanty-herrmann-571836157/"
                                       style={{
@@ -123,7 +122,7 @@ export class About extends Component {
                                     </a>
                                   </div>
                                 </div>
-                              </p>
+                              </span>
                             </div>
                             <p>
                               <u>references</u>

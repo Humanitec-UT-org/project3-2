@@ -5,15 +5,15 @@ import {
   Button,
   ButtonToolbar,
   Tooltip,
-  OverlayTrigger,
-  Container
+  OverlayTrigger
 } from "react-bootstrap";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import DataBase from "./styleLogos/DataBase";
+// import DataBase from "./styleLogos/DataBase";
+// import User from "./styleLogos/User";
+// import PlusCircle from "./styleLogos/Plus-Circle";
 import Info from "./styleLogos/Info";
-import User from "./styleLogos/User";
-import PlusCircle from "./styleLogos/Plus-Circle";
+
 import Power from "./styleLogos/Power";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -38,7 +38,7 @@ export default class myNavbar extends Component {
         console.log(res, "res");
         this.props.updateUser(null);
         // help needed
-        this.props.history.push("/");
+        // this.props.history.push("/");
       })
       .catch(err => {
         console.log("something went wrong with Logout", err);
@@ -48,127 +48,121 @@ export default class myNavbar extends Component {
   render() {
     return (
       <div>
-        <Link>
-          <Navbar bg="dark" variant="dark">
-            <Navbar.Brand href="../">
-              Your Ecological Foodprint {/* info start */}
-              {["bottom"].map(placement => (
-                <OverlayTrigger
-                  key={placement}
-                  placement={placement}
-                  overlay={
-                    <Tooltip id={`tooltip-${placement}`}>
-                      Find references about this website
-                    </Tooltip>
-                  }
-                >
-                  <Link to="/about">
-                    <Button variant="outline-info">
-                      <Info />
-                    </Button>
-                  </Link>
-                </OverlayTrigger>
-              ))}
-              {/* info end */}
-            </Navbar.Brand>
-            <Nav className="mr-auto"></Nav>
-
-            {this.props.user ? (
-              <div>
-                <ButtonToolbar>
-                  {/* profile start */}
-                  {["bottom"].map(placement => (
-                    <OverlayTrigger
-                      key={placement}
-                      placement={placement}
-                      overlay={
-                        <Tooltip id={`tooltip-${placement}`}>
-                          Go to your profile
-                        </Tooltip>
-                      }
-                    >
-                      <Link to="/profile">
-                        <Button variant="outline-info">
-                          {/* <User /> */} Profile
-                        </Button>
-                      </Link>
-                    </OverlayTrigger>
-                  ))}
-                  {/* profile end */}
-
-                  {/* add start */}
-                  {["bottom"].map(placement => (
-                    <OverlayTrigger
-                      key={placement}
-                      placement={placement}
-                      overlay={
-                        <Tooltip id={`tooltip-${placement}`}>
-                          Something missing? Go here to add items to the
-                          database
-                        </Tooltip>
-                      }
-                    >
-                      <Link to="/add">
-                        <Button variant="outline-info">
-                          {/* <DataBase /> */} Add
-                        </Button>
-                      </Link>
-                    </OverlayTrigger>
-                  ))}
-                  {/* add end */}
-                  {/* search start */}
-                  {["bottom"].map(placement => (
-                    <OverlayTrigger
-                      key={placement}
-                      placement={placement}
-                      overlay={
-                        <Tooltip id={`tooltip-${placement}`}>
-                          Add items to your personal profile
-                        </Tooltip>
-                      }
-                    >
-                      <Link to="/search">
-                        <Button variant="outline-info">
-                          {/* <PlusCircle /> */} Search
-                        </Button>
-                      </Link>
-                    </OverlayTrigger>
-                  ))}
-                  {/* search end */}
-                  {/* logout start */}
-                  {["bottom"].map(placement => (
-                    <OverlayTrigger
-                      key={placement}
-                      placement={placement}
-                      overlay={
-                        <Tooltip id={`tooltip-${placement}`}>Goodbye!</Tooltip>
-                      }
-                    >
-                      <Button
-                        variant="outline-info"
-                        onClick={this.LogoutHandler}
-                      >
-                        <Power />
-                      </Button>
-                    </OverlayTrigger>
-                  ))}
-                  {/* logout end */}
-                </ButtonToolbar>
-              </div>
-            ) : (
-              <div>
-                <Link to="/signup">
-                  <Button variant="outline-info">Signup</Button>
-                </Link>
-                <Link to="/login">
-                  <Button variant="outline-info" onClick={this.displayQuestion}>
-                    Login
+        <Navbar bg="dark" variant="dark">
+          <Navbar.Brand href="../">
+            Your Ecological Foodprint {/* info start */}
+            {["bottom"].map(placement => (
+              <OverlayTrigger
+                key={placement}
+                placement={placement}
+                overlay={
+                  <Tooltip id={`tooltip-${placement}`}>
+                    Find references about this website
+                  </Tooltip>
+                }
+              >
+                <Link to="/about">
+                  <Button variant="outline-info">
+                    <Info />
                   </Button>
                 </Link>
-              </div>
-            )}
-          </Navbar>
-        </Link>
+              </OverlayTrigger>
+            ))}
+            {/* info end */}
+          </Navbar.Brand>
+          <Nav className="mr-auto"></Nav>
+
+          {this.props.user ? (
+            <div>
+              <ButtonToolbar>
+                {/* profile start */}
+                {["bottom"].map(placement => (
+                  <OverlayTrigger
+                    key={placement}
+                    placement={placement}
+                    overlay={
+                      <Tooltip id={`tooltip-${placement}`}>
+                        Go to your profile
+                      </Tooltip>
+                    }
+                  >
+                    <Link to="/profile">
+                      <Button variant="outline-info">
+                        {/* <User /> */} Profile
+                      </Button>
+                    </Link>
+                  </OverlayTrigger>
+                ))}
+                {/* profile end */}
+
+                {/* add start */}
+                {["bottom"].map(placement => (
+                  <OverlayTrigger
+                    key={placement}
+                    placement={placement}
+                    overlay={
+                      <Tooltip id={`tooltip-${placement}`}>
+                        Something missing? Go here to add items to the database
+                      </Tooltip>
+                    }
+                  >
+                    <Link to="/add">
+                      <Button variant="outline-info">
+                        {/* <DataBase /> */} Add
+                      </Button>
+                    </Link>
+                  </OverlayTrigger>
+                ))}
+                {/* add end */}
+                {/* search start */}
+                {["bottom"].map(placement => (
+                  <OverlayTrigger
+                    key={placement}
+                    placement={placement}
+                    overlay={
+                      <Tooltip id={`tooltip-${placement}`}>
+                        Add items to your personal profile
+                      </Tooltip>
+                    }
+                  >
+                    <Link to="/search">
+                      <Button variant="outline-info">
+                        {/* <PlusCircle /> */} Search
+                      </Button>
+                    </Link>
+                  </OverlayTrigger>
+                ))}
+                {/* search end */}
+                {/* logout start */}
+                {["bottom"].map(placement => (
+                  <OverlayTrigger
+                    key={placement}
+                    placement={placement}
+                    overlay={
+                      <Tooltip id={`tooltip-${placement}`}>Goodbye!</Tooltip>
+                    }
+                  >
+                    <Button variant="outline-info" onClick={this.LogoutHandler}>
+                      <Power />
+                    </Button>
+                  </OverlayTrigger>
+                ))}
+                {/* logout end */}
+              </ButtonToolbar>
+            </div>
+          ) : (
+            <div>
+              <Link to="/signup">
+                <Button variant="outline-info">Signup</Button>
+              </Link>
+              <Link to="/login">
+                <Button variant="outline-info" onClick={this.displayQuestion}>
+                  Login
+                </Button>
+              </Link>
+            </div>
+          )}
+        </Navbar>
       </div>
     );
   }

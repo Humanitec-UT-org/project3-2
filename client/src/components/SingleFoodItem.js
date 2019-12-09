@@ -10,7 +10,6 @@ export class SingleFoodItem extends React.Component {
   }
   changeVisible = () => {
     this.props.isVisible();
-
   };
   handleItem = () => {
     this.props.addFood(this.props.item);
@@ -30,17 +29,19 @@ export class SingleFoodItem extends React.Component {
     return (
       <div>
         <table>
-          <tr>
-            <th width={100}>{this.props.item.name}</th>
-            <th>
-              <button
-                onClick={this.handleItem}
-                style={{ backgroundColor: "transparent" }}
-              >
-                <PlusCircle />
-              </button>
-            </th>
-          </tr>
+          <tbody>
+            <tr>
+              <th width={100}>{this.props.item.name}</th>
+              <th>
+                <button
+                  onClick={this.handleItem}
+                  style={{ backgroundColor: "transparent" }}
+                >
+                  <PlusCircle />
+                </button>
+              </th>
+            </tr>
+          </tbody>
         </table>
         {/* exmaple show true onClick  */}
         {/* this works! */}

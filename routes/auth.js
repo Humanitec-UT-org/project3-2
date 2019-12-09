@@ -28,10 +28,12 @@ authRouter.get("/checkuser", (req, res, next) => {
 authRouter.post("/signup", (req, res, next) => {
   const username = req.body.username;
   const password = req.body.password;
-  User.count({ name: req.body.username }).then(count => {
+  User.count({ username: req.body.username }).then(count => {
+    // works
     if (count > 0) {
       res.json({ message: "user already exists" });
     }
+    // help needed
   });
   if (!username || !password) {
     res.status(400).json({ message: "Provide username and password" });
