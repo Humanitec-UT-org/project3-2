@@ -57,11 +57,25 @@ export class Profile extends Component {
   };
 
   render() {
-    const sum = this.state.addedFooditems.reduce((a, c) => a + c.emission, 0);
+    const sum = this.state.addedFooditems
+      .reduce((a, c) => a + c.emission, 0)
+      .toFixed(1);
     // const sum = this.state.addedFooditems.reduce(
     //   (a, c) => (a = a || 0 + (c = c || 0).emission),
     //   0
     // );
+    // fat
+    const fatItems = this.state.addedFooditems.filter(d => d.group === "fat");
+    const fatSum = fatItems.reduce((a, c) => a + c.emission, 0);
+    console.log("summe fat", fatSum);
+    // vegetable
+    const vegetableItems = this.state.addedFooditems.filter(
+      d => d.group === "vegetable"
+    );
+    const vegetableSum = vegetableItems.reduce((a, c) => a + c.emission, 0);
+    // meat
+    const meatItems = this.state.addedFooditems.filter(d => d.group === "meat");
+    const meatSum = meatItems.reduce((a, c) => a + c.emission, 0);
     // grain
     const grainItems = this.state.addedFooditems.filter(
       d => d.group === "grain"
@@ -90,7 +104,15 @@ export class Profile extends Component {
     const fishItems = this.state.addedFooditems.filter(f => f.group === "fish");
     const fishSum = fishItems.reduce((a, c) => a + c.emission, 0);
     const leftoverEmission =
-      60 - (fishSum + spiceSum + fruitSum + seedSum + grainSum);
+      1500 -
+      (fishSum +
+        spiceSum +
+        fruitSum +
+        seedSum +
+        grainSum +
+        meatSum +
+        vegetableSum +
+        fatSum);
 
     console.log("fishSum", fishSum);
     console.log("leftoverEmission", leftoverEmission);
@@ -125,11 +147,8 @@ export class Profile extends Component {
                   // orange
                   { titel: "Grain", value: grainSum, color: "#E91C59" },
                   // blau
-                  // MISSING! veg
                   { titel: "Veggies", value: grainSum, color: "#7ED5F0" },
-                  // MISSING Meat
                   { titel: "Meat", value: grainSum, color: "#794E1B" },
-                  // MISSING fat FF0312
                   { titel: "Fat", value: grainSum, color: "#FF0312" },
                   {
                     title: "Leftover",
@@ -241,7 +260,7 @@ export class Profile extends Component {
                   <th width="20" height="20">
                     Summe:
                   </th>
-                  <th> {sum}</th>
+                  <th> {sum} gr of 1.5 t</th>
                 </tr>
               </table>
               absatz rechts neben dem chart lorem ipsum bla lorem ipsum bla

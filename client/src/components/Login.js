@@ -43,34 +43,9 @@ class Login extends React.Component {
                 <div className="container">
                   <div className="row">
                     <div className="col-md-9 col-lg-8 mx-auto">
-                      <h3 className="login-heading mb-4">Success</h3>
+                      <h3 className="login-heading mb-4"></h3>
                       <div className="form-label-group">
-                        <p>you successfully did this & that</p>
-
-                        <div className="container">
-                          <div
-                            id="scroll3"
-                            className="cardScroll w-80 card-body"
-                            data-mcs-theme="minimal-dark"
-                            data-mcs-auto-hide-scrollbar="true"
-                            ref={a => (this._acc = a)}
-                            onClick={this._handleClick}
-                          >
-                            {this.props.children}
-                            search result:
-                            <h4 id="list-item">
-                              sdajksd
-                              <ul>
-                                <li>sdj</li>
-                                <li>sd</li> <li>sdj</li>
-                                <li>sd</li> <li>sdj</li>
-                                <li>sd</li> <li>sdj</li>
-                                <li>sd</li> <li>sdj</li>
-                                <li>sd</li>
-                              </ul>
-                            </h4>
-                          </div>
-                        </div>
+                        <div className="container"></div>
                       </div>
                     </div>
                   </div>

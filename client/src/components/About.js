@@ -1,12 +1,170 @@
 import React, { Component } from "react";
+import Github from "./styleLogos/Github";
+import Linkedin from "./styleLogos/LinkedIn";
 
 export class About extends Component {
   render() {
     return (
       <div>
-        <a href="https://www.freepik.com/free-photos-vectors/background">
-          Background photo created by tirachard - www.freepik.com
-        </a>
+        <div className="login">
+          <div className="container-fluid">
+            <div className="row no-gutter">
+              {/* start */}
+              <div className="col-md-8 col-lg-6">
+                <div className="login d-flex align-items-center py-5">
+                  <div className="container">
+                    <div className="row">
+                      <div className="col-md-9 col-lg-8 mx-auto">
+                        <h3 className="login-heading mb-4">Info</h3>
+                        <div className="form-label-group">
+                          <div className="container">
+                            <p>
+                              <u>context</u>
+                            </p>
+                            <div
+                              id="scroll3"
+                              className="cardScroll w-100 card-body"
+                              data-mcs-theme="minimal-dark"
+                              data-mcs-auto-hide-scrollbar="true"
+                              style={{
+                                backgroundColor: "transparent",
+                                height: "300px"
+                              }}
+                              ref={a => (this._acc = a)}
+                              onClick={this._handleClick}
+                            >
+                              {this.props.children}
+
+                              <p>
+                                Shopping, housing, mobility, food - each of us
+                                produces CO2. <br />
+                                Our diet produces to about 25% of our total
+                                annual CO2 consumption. (Depending on the source
+                                and consideration of various factors such as
+                                production, transport and preparation of the
+                                food, the value is 16-40%). <br />
+                                The values per person vary between 1.4 - 2.5
+                                tons per year. It depends on what we eat, where
+                                we shop and where our food comes from. <br />
+                                This app expects that with an &nbsp;
+                                <u>
+                                  annual food consumption of less than 1.5 tons
+                                  of CO2 per year
+                                </u>
+                                , we can have a lasting effect on our climate.
+                                <br />
+                                The numbers come from the research of several
+                                sources and give only average values. Exact
+                                quantities are also not taken into account.
+                                <br />
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {/* end */}
+              <div className="col-md-8 col-lg-6">
+                <div className="login d-flex align-items-center py-5">
+                  <div className="container">
+                    <div className="row">
+                      <div className="col-md-9 col-lg-8 mx-auto">
+                        <h3 className="login-heading mb-4"></h3>
+                        <div className="form-label-group">
+                          <div className="container">
+                            <p>
+                              <u>personal</u>
+                            </p>
+                            <div
+                              id="scroll3"
+                              className="cardScroll w-100 card-body"
+                              data-mcs-theme="minimal-dark"
+                              data-mcs-auto-hide-scrollbar="true"
+                              style={{
+                                backgroundColor: "transparent",
+                                height: "200px"
+                              }}
+                              ref={a => (this._acc = a)}
+                              onClick={this._handleClick}
+                            >
+                              {this.props.children}
+
+                              <p>
+                                This app was created as the final project of the
+                                Ironhack Web Development Bootcamp. <br />
+                                It is based on MERN stack. <br />
+                                Person behind the scenes:
+                                <br />
+                                Chantal Herrmann <br />
+                                <div class="row">
+                                  <div class="col-2">
+                                    <a
+                                      href="https://github.com/ChantyHe90"
+                                      style={{
+                                        textDecoration: "none",
+                                        color: "black"
+                                      }}
+                                    >
+                                      <Github />
+                                    </a>
+                                  </div>
+                                  <div class="col-sm">
+                                    <a
+                                      href="https://www.linkedin.com/in/chanty-herrmann-571836157/"
+                                      style={{
+                                        textDecoration: "none",
+                                        color: "black"
+                                      }}
+                                    >
+                                      <Linkedin />
+                                    </a>
+                                  </div>
+                                </div>
+                              </p>
+                            </div>
+                            <p>
+                              <u>references</u>
+                            </p>
+                            <div
+                              id="scroll3"
+                              className="cardScroll w-100 card-body"
+                              data-mcs-theme="minimal-dark"
+                              data-mcs-auto-hide-scrollbar="true"
+                              style={{
+                                backgroundColor: "transparent",
+                                height: "200px"
+                              }}
+                              ref={a => (this._acc = a)}
+                              onClick={this._handleClick}
+                            >
+                              {this.props.children}
+
+                              <p>
+                                <a
+                                  href="https://www.freepik.com/free-photos-vectors/background"
+                                  style={{
+                                    textDecoration: "none",
+                                    color: "black"
+                                  }}
+                                >
+                                  Background photo created by tirachard -
+                                  <u>www.freepik.com</u>
+                                </a>
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
