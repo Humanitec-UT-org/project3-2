@@ -10,6 +10,7 @@ class AddFoodItem extends React.Component {
   state = {
     name: "",
     emission: "",
+    group: "",
     errors: false
   };
 
@@ -31,7 +32,8 @@ class AddFoodItem extends React.Component {
         console.log(response.data, "response");
         this.setState({
           name: "",
-          emission: ""
+          emission: "",
+          group: ""
         });
 
         this.props.addProject();
@@ -77,8 +79,6 @@ class AddFoodItem extends React.Component {
                             className="form-control"
                             placeholder="Username"
                             name="username"
-                            value={this.state.username}
-                            onChange={e => this.changeHandler(e)}
                             required
                             autoFocus
                           />
@@ -92,8 +92,6 @@ class AddFoodItem extends React.Component {
                             className="form-control"
                             placeholder="Password"
                             name="password"
-                            value={this.state.password}
-                            onChange={e => this.changeHandler(e)}
                             required
                           />
                           <label htmlFor="inputPassword">Password</label>

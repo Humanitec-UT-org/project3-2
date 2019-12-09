@@ -151,6 +151,24 @@ class App extends React.Component {
               }
             }}
           ></Route>
+          {/* missing logout */}
+          <Route
+            path="/logout"
+            render={() => {
+              if (this.state.loggedInUser) {
+                return <Redirect to="/"></Redirect>;
+              } else {
+                return (
+                  <div>
+                    <Signup
+                      history={this.props.history}
+                      updateUser={this.updateUserHandler}
+                    ></Signup>
+                  </div>
+                );
+              }
+            }}
+          ></Route>
 
           <Route path="/foodsExtended" render={() => <Foods></Foods>}></Route>
         </Switch>

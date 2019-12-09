@@ -121,6 +121,7 @@ authRouter.post("/login", (req, res, next) => {
 authRouter.get("/logout", (req, res, next) => {
   // req.logout()  by passport
   req.logout();
+  res.redirect("/");
 
   res.status(200).json({ message: "Logout!" });
 });

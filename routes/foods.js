@@ -68,8 +68,8 @@ foodsRouter.post("/add-to-list", (req, res, next) => {
       foodFromList
         .create({
           name: req.body.name,
-          code: req.body.code
-          // owner: req.user._id
+          emission: req.body.emission,
+          group: req.body.group
         })
         .then(newFoodFromList => {
           console.log("newFoodFromList", newFoodFromList);

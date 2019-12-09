@@ -15,6 +15,13 @@ export class SingleFoodItem extends React.Component {
     this.props.addFood(this.props.item);
     console.log("hello", this.props.item.name);
     this.props.isVisible();
+    console.log("versuche", this.props.isVisible);
+    // i want this but another context > speicher this kurz vorher in that
+    const that = this;
+    function hide() {
+      that.props.isVisible(false);
+    }
+    setTimeout(hide, 2000);
   };
 
   render() {

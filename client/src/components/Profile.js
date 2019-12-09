@@ -260,18 +260,16 @@ export class Profile extends Component {
                   <th width="20" height="20">
                     Summe:
                   </th>
-                  <th> {sum} gr of 1.5 t</th>
+                  <th>
+                    {" "}
+                    {sum} gr <br />
+                    of 1.5 t
+                  </th>
                 </tr>
               </table>
-              absatz rechts neben dem chart lorem ipsum bla lorem ipsum bla
-              lorem ipsum bla lorem ipsum bla lorem ips lorem ipsum bla lorem
-              ipsum bla lorem ipsum bla lorem ipsum bla lorem ips lorem ipsum
-              bla lorem ipsum bla lorem ipsum bla lorem ipsum bla lorem ips
-              lorem ipsum bla lorem ipsum bla lorem ipsum bla lorem ipsum bla
-              lorem ipsum bla lorem ipsum bla lorem ipsum bla lorem ipsum bla
-              lorem ipsum bla lorem ipsum bla lorem ipsum bla lorem ipsum bla
-              lorem ipsum bla lorem ipsum bla lorem ipsum bla lorem ipsum bla
-              lorem ipsum bla lorem ipsum bla lorem ipsum bla lorem ipsum bla
+              <Canvas /> shows your remaining emission for this month!
+              <br />
+              blabla
             </div>
           </div>
         </div>
