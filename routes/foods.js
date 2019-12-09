@@ -60,6 +60,7 @@ foodsRouter.get("/user-list", (req, res, next) => {
 
 // POST /api/foods  neues produkt
 foodsRouter.post("/add-to-list", (req, res, next) => {
+  console.log("REQUEST:", req)
   foodFromList.count({ name: req.body.name }).then(count => {
     if (count > 0) {
       res.json({ message: "food item already exists" });
@@ -69,7 +70,8 @@ foodsRouter.post("/add-to-list", (req, res, next) => {
         .create({
           name: req.body.name,
           emission: req.body.emission,
-          group: req.body.group
+          group: req.body.option
+
         })
         .then(newFoodFromList => {
           console.log("newFoodFromList", newFoodFromList);

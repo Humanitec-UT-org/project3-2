@@ -11,10 +11,12 @@ class ManualSearch extends Component {
     this.state = {
       searchTerm: [],
       foods: [],
-      visible: false
+      visible: false,
+
     };
     this.isVisible = this.isVisible.bind(this);
   }
+
   isVisible = function(newState) {
     if (newState === undefined) {
       newState = true;
@@ -60,7 +62,7 @@ class ManualSearch extends Component {
                       <div className="col-md-9 col-lg-8 mx-auto">
                         <h3 className="login-heading mb-4">Success</h3>
                         <div className="form-label-group">
-                          <p>you successfully did this & that</p>
+                          <p>you successfully searched for {}</p>
                           <div className="container"></div>
                         </div>
                       </div>

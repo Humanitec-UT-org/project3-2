@@ -10,11 +10,13 @@ export class SingleFoodItem extends React.Component {
   }
   changeVisible = () => {
     this.props.isVisible();
+
   };
   handleItem = () => {
     this.props.addFood(this.props.item);
     console.log("hello", this.props.item.name);
     this.props.isVisible();
+
     console.log("versuche", this.props.isVisible);
     // i want this but another context > speicher this kurz vorher in that
     const that = this;
