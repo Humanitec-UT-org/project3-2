@@ -10,11 +10,17 @@ export class SingleFoodItem extends React.Component {
   }
   changeVisible = () => {
     this.props.isVisible();
+
   };
   handleItem = () => {
     this.props.addFood(this.props.item);
     console.log("hello", this.props.item.name);
     this.props.isVisible();
+    const that = this;
+    function hide() {
+      that.props.isVisible(false)
+    }
+    setTimeout(hide, 2000);
   };
 
   render() {

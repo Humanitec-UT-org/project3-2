@@ -10,11 +10,13 @@ class AddFoodItem extends React.Component {
   state = {
     name: "",
     emission: "",
-    errors: false
+    errors: "",
+    option: "dairy"
   };
 
   submitHandler = event => {
     event.preventDefault();
+    console.log(this.state)
     // send the data to the backend
     axios
       .post("/api/foods/add-to-list", this.state)
@@ -48,10 +50,16 @@ class AddFoodItem extends React.Component {
   };
 
   changeEmissionHandler = e => {
-    const re = /^[0-9\b]+$/;
+    const re = /^[0-9.,]+$/;
     if (e.target.value === "" || re.test(e.target.value)) {
-      this.setState({ emission: e.target.value });
+      this.setState({ emission: e.target.value.replace(',', '.') });
+      console.log(this.state.emission)
     }
+  };
+
+  changeOptionHandler = e => {
+      this.setState({ option: e.target.value });
+      console.log("OPTION:" , this.state.option)
   };
 
   render() {
@@ -77,8 +85,6 @@ class AddFoodItem extends React.Component {
                             className="form-control"
                             placeholder="Username"
                             name="username"
-                            value={this.state.username}
-                            onChange={e => this.changeHandler(e)}
                             required
                             autoFocus
                           />
@@ -92,8 +98,6 @@ class AddFoodItem extends React.Component {
                             className="form-control"
                             placeholder="Password"
                             name="password"
-                            value={this.state.password}
-                            onChange={e => this.changeHandler(e)}
                             required
                           />
                           <label htmlFor="inputPassword">Password</label>
@@ -171,20 +175,22 @@ class AddFoodItem extends React.Component {
                             className="custom-select"
                             id="inputGroupSelect01"
                             defaultValue={"DEFAULT"}
+                            value={this.state.option}
+                            onChange={this.changeOptionHandler} 
                           >
                             <option value="DEFAULT" disabled>
                               Choose...
                             </option>
 
-                            <option value="1">dairy</option>
-                            <option value="2">fat</option>
-                            <option value="3">fish</option>
-                            <option value="3">fruits</option>
-                            <option value="3">grain</option>
-                            <option value="3">meat</option>
-                            <option value="3">seed</option>
-                            <option value="3">spices</option>
-                            <option value="3">vegetable</option>
+                            <option value="dairy">dairy</option>
+                            <option value="fat">fat</option>
+                            <option value="fish">fish</option>
+                            <option value="fruits">fruits</option>
+                            <option value="grain">grain</option>
+                            <option value="meat">meat</option>
+                            <option value="seed">seed</option>
+                            <option value="spices">spices</option>
+                            <option value="vegetable">vegetable</option>
                           </select>
                         </div>
                         {/* background-color: #48A3B8;
