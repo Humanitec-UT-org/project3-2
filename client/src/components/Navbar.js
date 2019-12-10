@@ -37,7 +37,7 @@ export default class myNavbar extends Component {
       .then(res => {
         console.log(res, "res");
         this.props.updateUser(null);
-        // help needed : cannot read push of undefined
+        // help needed : cannot read push of undefined, do i need the following ?
         // this.props.history.push("/");
       })
       .catch(err => {
@@ -62,7 +62,13 @@ export default class myNavbar extends Component {
                 }
               >
                 <Link to="/about">
-                  <Button variant="outline-info">
+                  <Button
+                    variant="outline-info"
+                    style={{
+                      borderColor: "transparent",
+                      backgroundColor: "transparent"
+                    }}
+                  >
                     <Info />
                   </Button>
                 </Link>

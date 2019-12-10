@@ -7,7 +7,6 @@ import { Redirect, Switch, Route } from "react-router-dom";
 import Signup from "./components/Signup";
 import Login from "./components/Login";
 import Navbar from "./components/Navbar";
-import Foods from "./components/FoodList";
 import "./App.css";
 import Profile from "./components/Profile";
 import Home from "./components/Home";
@@ -27,7 +26,7 @@ class App extends React.Component {
     this.setState({
       loggedInUser: userObj
     });
-    //  help needed: wie sag ich jetzt hier userObj.username existiert schon?
+
     console.log("loggedInUser", this.state.loggedInUser);
   };
 
@@ -172,8 +171,6 @@ class App extends React.Component {
               }
             }}
           ></Route>
-
-          <Route path="/foodsExtended" render={() => <Foods></Foods>}></Route>
         </Switch>
       </div>
     );

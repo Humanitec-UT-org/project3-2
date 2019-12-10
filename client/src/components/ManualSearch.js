@@ -11,10 +11,16 @@ class ManualSearch extends Component {
     this.state = {
       searchTerm: [],
       foods: [],
-      visible: false
+      visible: false,
+      name: ""
     };
     this.isVisible = this.isVisible.bind(this);
   }
+  grabTheName = name => {
+    this.setState({
+      name: name
+    });
+  };
 
   isVisible = function(newState) {
     if (newState === undefined) {
@@ -56,7 +62,7 @@ class ManualSearch extends Component {
                       <div className="col-md-9 col-lg-8 mx-auto">
                         <h3 className="login-heading mb-4">Tip</h3>
                         <div className="form-label-group">
-                          {/* help needed */}
+                          {/* help needed name added item*/}
                           <p>
                             you want to know the single food items value? click
                             on the single items. the number will tell you the
@@ -73,8 +79,11 @@ class ManualSearch extends Component {
                         <div className="col-md-9 col-lg-8 mx-auto">
                           <h3 className="login-heading mb-4">Yes!</h3>
                           <div className="form-label-group">
-                            {/* help needed */}
-                            <p>you successfully added {}</p>
+                            {/* help needed name added items */}
+                            <p>
+                              you successfully added <u>{this.state.name}</u> to
+                              your profile!
+                            </p>
                             <div className="container"></div>
                           </div>
                         </div>
@@ -90,7 +99,7 @@ class ManualSearch extends Component {
                 <div className="container">
                   <div className="row">
                     <div className="col-md-9 col-lg-8 mx-auto">
-                      <h3 className="login-heading mb-4">Search & Add</h3>
+                      <h3 className="login-heading mb-4">search & add items</h3>
 
                       <div className="container">
                         <div
@@ -105,18 +114,13 @@ class ManualSearch extends Component {
                           {this.props.children}
 
                           <h4 id="list-item">
-                            {/* {console.log(
-                              "in manualsearch:",
-                              this.props.addFood
-                              
-                            )} */}
                             {console.log(
                               "in manualsearch:",
                               this.getFoodBySearch
                             )}
-
                             {this.state.foods.map(food => (
                               <SingleFoodItem
+                                grabTheName={this.grabTheName}
                                 item={food}
                                 addFood={this.props.addFood}
                                 isVisible={this.isVisible}
