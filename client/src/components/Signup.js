@@ -9,7 +9,7 @@ class Signup extends React.Component {
   state = {
     username: "",
     password: "",
-    errors: []
+    error: null
   };
 
   submitHandler = event => {
@@ -20,9 +20,22 @@ class Signup extends React.Component {
         this.props.updateUser(response.data);
         // user stays at signup if user already exists
         console.log(response.data);
-        this.props.history.push("/");
+        // this.props.history.push("/");
       })
-      .catch(err => console.log("i want to grab this error", err));
+      .catch(err => {
+        if (!err.response) {
+          throw err;
+        }
+        const { response } = err;
+        if (response.status >= 400 && response.status < 500) {
+          this.setState({ error: response.data.message });
+        } else {
+          this.setState({
+            error:
+              "Something went wrong on our side. we are sorry, please try again."
+          });
+        }
+      });
   };
 
   changeHandler = event => {
@@ -44,6 +57,10 @@ class Signup extends React.Component {
                     <div className="col-md-9 col-lg-8 mx-auto">
                       <h3 className="login-heading mb-4">Welcome</h3>
                       <Form onSubmit={this.submitHandler}>
+                        {this.state.error ? (
+                          <div>{this.state.error}</div>
+                        ) : null}
+
                         <div className="form-label-group">
                           <input
                             type="text"
@@ -89,27 +106,6 @@ class Signup extends React.Component {
                           style={{
                             backgroundColor: "#48A3B8",
                             borderColor: "#48A3B8"
-                          }}
-                          onClick={() => {
-                            console.log(
-                              "I submit signup",
-                              this.props.updateUser()
-                            );
-                            if (!this.props.updateUser) {
-                              store.addNotification({
-                                title: "Food Added",
-                                message: "Item was added successfully",
-                                type: "default", // 'default', 'success', 'info', 'warning'
-                                container: "bottom-left", // where to position the notifications
-                                animationIn: ["animated", "fadeIn"], // animate.css classes that's applied
-                                animationOut: ["animated", "fadeOut"], // animate.css classes that's applied
-                                dismiss: {
-                                  duration: 3000
-                                }
-                              });
-                            } else {
-                              return null;
-                            }
                           }}
                         >
                           Signup

@@ -8,9 +8,34 @@ import * as serviceWorker from "./serviceWorker";
 import { BrowserRouter } from "react-router-dom";
 import axios from "axios";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { ButtonToolbar, Button, Spinner } from "react-bootstrap";
 import "@devexpress/dx-react-chart-bootstrap4/dist/dx-react-chart-bootstrap4.css";
 
-document.getElementById("root").innerText = "Loading...";
+document.getElementById("root").render = (
+  // help needed
+  <ButtonToolbar>
+    <Button variant="primary" disabled>
+      <Spinner
+        as="span"
+        animation="border"
+        size="sm"
+        role="status"
+        aria-hidden="true"
+      />
+      <span className="sr-only">Loading...</span>
+    </Button>
+    <Button variant="primary" disabled>
+      <Spinner
+        as="span"
+        animation="grow"
+        size="sm"
+        role="status"
+        aria-hidden="true"
+      />
+      Loading...
+    </Button>
+  </ButtonToolbar>
+);
 
 // makes sure the entire App only gets rendered AFTER we know if the user is logged in
 axios

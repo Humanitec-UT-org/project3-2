@@ -14,8 +14,7 @@ class AddFoodItem extends Component {
       emission: "",
       group: "",
       errors: false,
-      added: false,
-      option: ""
+      added: false
     };
   }
   submitHandler = event => {
@@ -66,8 +65,9 @@ class AddFoodItem extends Component {
   };
 
   changeOptionHandler = e => {
-    this.setState({ option: e.target.value });
-    console.log("OPTION:", this.state.option);
+    this.setState({ group: e.target.value }, () => {
+      console.log("OPTION:", this.state.group);
+    });
   };
 
   render() {
@@ -114,7 +114,7 @@ class AddFoodItem extends Component {
                 <div className="container">
                   <div className="row">
                     <div className="col-md-9 col-lg-8 mx-auto">
-                      <h3 className="login-heading mb-4">Add a new Product:</h3>
+                      <h3 className="login-heading mb-4">add a new Product:</h3>
                       <Form onSubmit={this.submitHandler}>
                         <div className="form-label-group">
                           <input
@@ -157,6 +157,7 @@ class AddFoodItem extends Component {
                             defaultValue={"DEFAULT"}
                             value={this.state.option}
                             onChange={this.changeOptionHandler}
+                            required
                           >
                             <option value="DEFAULT" disabled>
                               Choose...

@@ -12,9 +12,10 @@ export class SingleFoodItem extends React.Component {
   changeVisible = () => {
     this.props.isVisible();
   };
-  handleItem = () => {
+  handleItem = e => {
+    this.props.grabTheName(this.props.item.name);
     this.props.addFood(this.props.item);
-    console.log("hello", this.props.item.name);
+    console.log("hello from singlefoodItem", this.props.item.name);
     this.props.isVisible();
 
     console.log("versuche", this.props.isVisible);
@@ -23,7 +24,7 @@ export class SingleFoodItem extends React.Component {
     function hide() {
       that.props.isVisible(false);
     }
-    setTimeout(hide, 2000);
+    setTimeout(hide, 2200);
   };
 
   render() {
@@ -68,9 +69,3 @@ export class SingleFoodItem extends React.Component {
 }
 
 export default SingleFoodItem;
-// foodItem => {
-//   axios__WEBPACK_IMPORTED_MODULE_2___default.a.post("/api/foods", {
-//     id: foodItem._id
-//   }).then(response => {
-//     this.setState({
-//       loggedInUser: _objectSprea…

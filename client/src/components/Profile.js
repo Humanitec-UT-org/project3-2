@@ -12,8 +12,8 @@ import CanvasSeed from "./styleCanvas/CanvasSeed";
 import CanvasSpice from "./styleCanvas/CanvasSpice";
 import CanvasVegetable from "./styleCanvas/CanvasVegetable";
 import Trash from "./Trash";
-import { Table, Form } from "react-bootstrap";
-import List from "./ListAndSearch";
+import { Table, InputGroup, FormControl, Button } from "react-bootstrap";
+import Search from "./styleLogos/Search";
 
 // fat
 // meat
@@ -23,7 +23,9 @@ import List from "./ListAndSearch";
 export class Profile extends Component {
   state = {
     addedFooditems: [],
-    user: ""
+    filtered: [],
+    user: "",
+    searchText: ""
   };
 
   componentDidMount() {
@@ -32,20 +34,25 @@ export class Profile extends Component {
         addedFooditems: response.data
       });
     });
-    // help needed
-    // axios.get("/api/auth/checkuser").then(response => {
-    //   this.setState({
-    //     user: response.user.name
-    //   });
-    // });
   }
-
+  filterSearch = e => {
+    this.setState({
+      addedFooditems: this.state.addedFooditems.filter(
+        item => item.name == this.state.searchText
+      )
+    });
+  };
+  handleChange = e => {
+    this.setState({
+      searchText: e.target.value
+    });
+  };
   deleteItemHandler = (foodItem, index) => {
     // filteredFoodItems is the array without the passed foodItem
     let filteredFoodItems = this.state.addedFooditems.filter(
       e => e !== foodItem
     );
-    console.log("deleting ", foodItem);
+    console.log("deleting ", filteredFoodItems[0].name);
     axios
       .post("/api/foods", { addedFooditems: filteredFoodItems })
       .then(response => {
@@ -54,8 +61,11 @@ export class Profile extends Component {
         this.setState({
           addedFooditems: response.data
         });
+        console.log("BLALA", response.data);
       });
   };
+
+  // filteredFoodItems = (foodItem, index => {});
 
   render() {
     const sum = this.state.addedFooditems
@@ -124,9 +134,12 @@ export class Profile extends Component {
     return (
       <div>
         {/* help needed */}
-        Hi,
-        {this.state.user ? this.state.user.username : "Stranger"} <br></br>
-        <div className="container" style={{ margin: "0 0 60 60" }}>
+        {/* Hi,
+        {this.props.user ? this.props.user.username : "Stranger"} <br></br> */}
+        <div
+          className="container"
+          style={{ margin: "20 20 60 60", marginTop: "30px" }}
+        >
           <div className="row">
             <div className="col-8">
               <ReactMinimalPieChart
@@ -177,28 +190,34 @@ export class Profile extends Component {
                 Items you added to your foodprint:
               </h5>
 
-              <div class="input-group-prepend justify-content-center">
-                <Form action="/api/foods" method="GET" class="">
-                  <br />
-                  <div class="form-group search-bar">
-                    <input
-                      id="nomatch"
-                      type="text"
-                      name="search"
-                      placeholder="search by username"
-                      class="form-control"
-                      width="100px"
-                    ></input>
-                    <input
-                      type="submit"
-                      value="Search"
-                      class="btn btn-outline-info"
-                    ></input>
-                  </div>
-                </Form>
-              </div>
-              <List />
+              {/* <div>
+                <input
+                  type="text"
+                  className="input"
+                  onChange={this.handleChange}
+                  placeholder="Search..."
+                />
+                <button onClick={this.filterSearch}>Search</button>
+              </div> */}
+              {/* start */}
+              <InputGroup className="mb-3">
+                <FormControl
+                  placeholder="Filter you added items"
+                  aria-label="Filter you added items"
+                  aria-describedby="basic-addon2"
+                  onChange={this.handleChange}
+                />
+                <InputGroup.Append>
+                  <Button
+                    variant="outline-secondary"
+                    onClick={this.filterSearch}
+                  >
+                    Filter
+                  </Button>
+                </InputGroup.Append>
+              </InputGroup>
 
+              {/* end */}
               <div
                 id="scroll3"
                 className="cardScroll w-60 card"
@@ -215,7 +234,6 @@ export class Profile extends Component {
                       <button
                         style={{ backgroundColor: "transparent" }}
                         onClick={() => {
-                          // help needed
                           console.log(item);
                           this.deleteItemHandler(item);
                         }}
@@ -286,7 +304,10 @@ export class Profile extends Component {
                   </tr>
                 </tbody>
               </Table>
-              <span>Go ahead & add items to your profile. </span>
+              <span>
+                {" "}
+                <Canvas></Canvas> shows your left over emission <br />
+              </span>
             </div>
           </div>
         </div>
@@ -296,5 +317,4 @@ export class Profile extends Component {
     );
   }
 }
-
 export default Profile;
