@@ -1,5 +1,6 @@
 import React from "react";
 import PlusCircle from "../components/styleLogos/Plus-Circle";
+import { Tooltip, OverlayTrigger } from "react-bootstrap";
 
 export class SingleFoodItem extends React.Component {
   constructor() {
@@ -31,7 +32,22 @@ export class SingleFoodItem extends React.Component {
         <table>
           <tbody>
             <tr>
-              <th width={100}>{this.props.item.name}</th>
+              {["bottom"].map(placement => (
+                <OverlayTrigger
+                  key={placement}
+                  placement={placement}
+                  overlay={
+                    <Tooltip id={`tooltip-${placement}`}>
+                      <span style={{ fontSize: "12px" }}>
+                        {this.props.item.emission} gr
+                      </span>
+                    </Tooltip>
+                  }
+                >
+                  <th width={100}>{this.props.item.name}</th>
+                </OverlayTrigger>
+              ))}
+
               <th>
                 <button
                   onClick={this.handleItem}

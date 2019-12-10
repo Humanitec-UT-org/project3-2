@@ -45,16 +45,21 @@ export class About extends Component {
                                 The values per person vary between 1.4 - 2.5
                                 tons per year. It depends on what we eat, where
                                 we shop and where our food comes from. <br />
-                                This app expects that with an &nbsp;
+                                Research expects that with an &nbsp;
                                 <u>
                                   annual food consumption of less than 1.5 tons
                                   of CO2 per year
                                 </u>
                                 , we can have a lasting effect on our climate.
                                 <br />
-                                The numbers come from the research of several
-                                sources and give only average values. Exact
-                                quantities are also not taken into account.
+                                This app has no claim to correctness. The
+                                visualization in the profile takes{" "}
+                                <u>1.5 kg as total quantity.</u> So 1/1000 of
+                                the recommended annual quantity. The values of
+                                single food items come from the research of
+                                several sources and give only average scores.
+                                Exact quantities are also not taken into
+                                account.
                                 <br />
                               </p>
                             </div>

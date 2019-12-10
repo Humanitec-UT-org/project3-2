@@ -24,11 +24,10 @@ export function Home() {
             alt="First slide"
           />
           <Carousel.Caption>
-            <h3>Everything we consume has a CO2 value.</h3>
             <p>Your Ecological Foodprint.</p>
           </Carousel.Caption>
         </Carousel.Item>
-        <Carousel.Item>
+        {/* <Carousel.Item>
           <img
             className="d-block w-100 center-block"
             src={require("./backgroundCar1.png")}
@@ -40,7 +39,7 @@ export function Home() {
             <h3>bla</h3>
             <p>bla</p>
           </Carousel.Caption>
-        </Carousel.Item>
+        </Carousel.Item> */}
         <Carousel.Item>
           <img
             className="d-block w-100 center-block"
@@ -50,7 +49,6 @@ export function Home() {
           />
 
           <Carousel.Caption>
-            <h3>Start today!</h3>
             <p>Your Ecological Foodprint.</p>
           </Carousel.Caption>
         </Carousel.Item>

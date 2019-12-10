@@ -37,7 +37,7 @@ export default class myNavbar extends Component {
       .then(res => {
         console.log(res, "res");
         this.props.updateUser(null);
-        // help needed
+        // help needed : cannot read push of undefined
         // this.props.history.push("/");
       })
       .catch(err => {

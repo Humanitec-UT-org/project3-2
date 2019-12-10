@@ -14,6 +14,7 @@ import Home from "./components/Home";
 import Manualsearch from "./components/ManualSearch";
 import AddFoodItem from "./components/AddFoodItem";
 import About from "./components/About";
+
 class App extends React.Component {
   state = {
     loggedInUser: this.props.user,
@@ -22,10 +23,12 @@ class App extends React.Component {
 
   updateUserHandler = userObj => {
     console.log("updating user");
-    console.log("i check out the userObj", userObj);
+    console.log("i check out the userObj on the client", userObj);
     this.setState({
       loggedInUser: userObj
     });
+    //  help needed: wie sag ich jetzt hier userObj.username existiert schon?
+    console.log("loggedInUser", this.state.loggedInUser);
   };
 
   handleSubmit = e => {

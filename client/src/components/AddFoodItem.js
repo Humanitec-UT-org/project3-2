@@ -81,19 +81,23 @@ class AddFoodItem extends Component {
               <div className="login d-flex align-items-center py-5">
                 <div className="container">
                   <div className="row">
+                    {/* help needed name the item existing/ added */}
                     {this.state.errors ? (
                       <div className="col-md-9 col-lg-8 mx-auto">
                         <h3 className="login-heading mb-4">Oops</h3>
                         <p>
-                          this item already exists.
-                          <br /> take a look at <i>search</i>.
+                          {this.setState.name} this item already exists.
+                          <br /> take a look in <i>Search</i>.
                         </p>
                       </div>
                     ) : null}
                     {this.state.added ? (
                       <div className="col-md-9 col-lg-8 mx-auto">
                         <h3 className="login-heading mb-4">Success</h3>
-                        <p>the new item was added successfully.</p>
+                        <p>
+                          the new item was added successfully.
+                          <br /> you can now look for it it in <i>Search</i>.
+                        </p>
                       </div>
                     ) : null}
                     {/* von anfang an: no error no added */}
@@ -181,13 +185,12 @@ class AddFoodItem extends Component {
                           type="submit"
                           onClick={() => {
                             console.log("addbutton", this.state.errors);
+                            console.log("option value", this.state.option);
                           }}
                         >
                           Add
                         </button>
-                        <h1 style={{ color: "red" }}>
-                          {/* {this.state.errors ? "you already posted" : ""} */}
-                        </h1>
+                        <h1 style={{ color: "red" }}></h1>
                       </Form>
                     </div>
                   </div>

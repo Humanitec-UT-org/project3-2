@@ -18,8 +18,9 @@ class Signup extends React.Component {
       .post("/api/auth/signup", this.state)
       .then(response => {
         this.props.updateUser(response.data);
+        // user stays at signup if user already exists
         console.log(response.data);
-        // this.props.history.push("/profile");
+        this.props.history.push("/");
       })
       .catch(err => console.log("i want to grab this error", err));
   };
@@ -51,7 +52,7 @@ class Signup extends React.Component {
                             placeholder="Username"
                             name="username"
                             value={this.state.username}
-                            onChange={e => this.changeHandler(e)}
+                            onChange={this.changeHandler}
                             required
                             autoFocus
                           />
@@ -66,7 +67,7 @@ class Signup extends React.Component {
                             placeholder="Password"
                             name="password"
                             value={this.state.password}
-                            onChange={e => this.changeHandler(e)}
+                            onChange={this.changeHandler}
                             pattern=".{8,}"
                             required
                             title="8 characters minimum"

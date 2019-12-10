@@ -52,20 +52,34 @@ class ManualSearch extends Component {
               <div className="login d-flex align-items-center py-5">
                 <div className="container">
                   <div className="row">
-                    {this.state.foods === [] ? (
-                      <p>true</p>
-                    ) : (
-                      <p>{this.state.foods.name}</p>
-                    )}
-                    {this.state.visible ? (
+                    <div className="container">
                       <div className="col-md-9 col-lg-8 mx-auto">
-                        <h3 className="login-heading mb-4">Success</h3>
+                        <h3 className="login-heading mb-4">Tip</h3>
                         <div className="form-label-group">
-                          <p>you successfully searched for {}</p>
-                          <div className="container"></div>
+                          {/* help needed */}
+                          <p>
+                            you want to know the single food items value? click
+                            on the single items. the number will tell you the
+                            CO2 emission value / 100 gr.
+                          </p>
                         </div>
                       </div>
-                    ) : null}
+                      {this.state.foods === [] ? (
+                        <p>true</p>
+                      ) : (
+                        <p>{this.state.foods.name}</p>
+                      )}
+                      {this.state.visible ? (
+                        <div className="col-md-9 col-lg-8 mx-auto">
+                          <h3 className="login-heading mb-4">Yes!</h3>
+                          <div className="form-label-group">
+                            {/* help needed */}
+                            <p>you successfully added {}</p>
+                            <div className="container"></div>
+                          </div>
+                        </div>
+                      ) : null}
+                    </div>
                   </div>
                 </div>
               </div>

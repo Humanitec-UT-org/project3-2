@@ -9,7 +9,7 @@ class CanvasFat extends React.Component {
 
     ctx.beginPath();
     ctx.arc(10, 12, 9, 0, 2 * Math.PI);
-    ctx.fillStyle = "#FF0312";
+    ctx.fillStyle = "#FFFFFF";
     ctx.fill();
     ctx.stroke();
   }
