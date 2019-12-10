@@ -11,8 +11,7 @@ class ManualSearch extends Component {
     this.state = {
       searchTerm: [],
       foods: [],
-      visible: false,
-
+      visible: false
     };
     this.isVisible = this.isVisible.bind(this);
   }
@@ -53,20 +52,34 @@ class ManualSearch extends Component {
               <div className="login d-flex align-items-center py-5">
                 <div className="container">
                   <div className="row">
-                    {this.state.foods === [] ? (
-                      <p>true</p>
-                    ) : (
-                      <p>{this.state.foods.name}</p>
-                    )}
-                    {this.state.visible ? (
+                    <div className="container">
                       <div className="col-md-9 col-lg-8 mx-auto">
-                        <h3 className="login-heading mb-4">Success</h3>
+                        <h3 className="login-heading mb-4">Tip</h3>
                         <div className="form-label-group">
-                          <p>you successfully searched for {}</p>
-                          <div className="container"></div>
+                          {/* help needed */}
+                          <p>
+                            you want to know the single food items value? click
+                            on the single items. the number will tell you the
+                            CO2 emission value / 100 gr.
+                          </p>
                         </div>
                       </div>
-                    ) : null}
+                      {this.state.foods === [] ? (
+                        <p>true</p>
+                      ) : (
+                        <p>{this.state.foods.name}</p>
+                      )}
+                      {this.state.visible ? (
+                        <div className="col-md-9 col-lg-8 mx-auto">
+                          <h3 className="login-heading mb-4">Yes!</h3>
+                          <div className="form-label-group">
+                            {/* help needed */}
+                            <p>you successfully added {}</p>
+                            <div className="container"></div>
+                          </div>
+                        </div>
+                      ) : null}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -114,14 +127,13 @@ class ManualSearch extends Component {
                         </div>
                       </div>
                       <Form onSubmit={this.handleFormSubmit}>
-                        <label for="inputEmission"></label>
+                        <label htmlFor="inputEmission"></label>
                         <div className="form-label-group">
                           <input
                             type="text"
                             className="form-control"
                             id="searchTerm"
                             name="searchTerm"
-                            className="form-control"
                             placeholder="Enter here what you are looking for"
                             onChange={this.changeHandler}
                             required
@@ -134,7 +146,7 @@ class ManualSearch extends Component {
                           className="custom-control-input"
                           id="customCheck1"
                         />
-                        <label for="inputAdding"></label>
+                        <label htmlFor="inputAdding"></label>
                         <button
                           className="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
                           type="submit"

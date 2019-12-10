@@ -1,24 +1,27 @@
-import React from "react";
+import React, { Component } from "react";
 import axios from "axios";
 //https://alligator.io/react/react-notifications-component/
 
 import "react-notifications-component/dist/theme.css";
 import "animate.css";
-import { Form, Toast, ToastBody, ToastHeader } from "react-bootstrap";
+import { Form } from "react-bootstrap";
 
-class AddFoodItem extends React.Component {
-  state = {
-    name: "",
-    emission: "",
-    group: "",
-    errors: false,
-    option: ""
-
-  };
-
+class AddFoodItem extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: "",
+      emission: "",
+      group: "",
+      errors: false,
+      added: false,
+      option: ""
+    };
+  }
   submitHandler = event => {
     event.preventDefault();
-    console.log(this.state)
+    console.log(this.state);
+    // das ist die antwort wenn erfolgreich geaddet
     // send the data to the backend
     axios
       .post("/api/foods/add-to-list", this.state)
@@ -29,10 +32,12 @@ class AddFoodItem extends React.Component {
           console.log("this.setState", this.setState);
         } else {
           this.setState({
-            errors: false
+            errors: false,
+            added: true
           });
         }
         console.log(response.data, "response");
+        // das ist die antwort wenn erfolgreich geaddet
         this.setState({
           name: "",
           emission: "",
@@ -55,14 +60,14 @@ class AddFoodItem extends React.Component {
   changeEmissionHandler = e => {
     const re = /^[0-9.,]+$/;
     if (e.target.value === "" || re.test(e.target.value)) {
-      this.setState({ emission: e.target.value.replace(',', '.') });
-      console.log(this.state.emission)
+      this.setState({ emission: e.target.value.replace(",", ".") });
+      console.log(this.state.emission);
     }
   };
 
   changeOptionHandler = e => {
-      this.setState({ option: e.target.value });
-      console.log("OPTION:" , this.state.option)
+    this.setState({ option: e.target.value });
+    console.log("OPTION:", this.state.option);
   };
 
   render() {
@@ -71,61 +76,33 @@ class AddFoodItem extends React.Component {
       <div className="login">
         <div className="container-fluid">
           <div className="row no-gutter">
-            {/* */}
-
             {/* start */}
             <div className="col-md-8 col-lg-6">
               <div className="login d-flex align-items-center py-5">
                 <div className="container">
                   <div className="row">
-                    <div className="col-md-9 col-lg-8 mx-auto">
-                      <h3 className="login-heading mb-4">Welcome back</h3>
-                      <Form onSubmit={this.submitHandler}>
-                        <div className="form-label-group">
-                          <input
-                            type="text"
-                            id="inputEmail"
-                            className="form-control"
-                            placeholder="Username"
-                            name="username"
-                            required
-                            autoFocus
-                          />
-                          <label htmlFor="inputEmail">Username</label>
-                        </div>
-
-                        <div className="form-label-group">
-                          <input
-                            type="password"
-                            id="inputPassword"
-                            className="form-control"
-                            placeholder="Password"
-                            name="password"
-                            required
-                          />
-                          <label htmlFor="inputPassword">Password</label>
-                        </div>
-
-                        <div className="custom-control custom-checkbox mb-3">
-                          <input
-                            type="checkbox"
-                            className="custom-control-input"
-                            id="customCheck1"
-                          />
-                        </div>
-
-                        <button
-                          className="btn btn-lg btn-primary btn-block btn-login text-uppercase font-weight-bold mb-2"
-                          type="submit"
-                          style={{
-                            backgroundColor: "#48A3B8",
-                            borderColor: "#48A3B8"
-                          }}
-                        >
-                          Login
-                        </button>
-                      </Form>
-                    </div>
+                    {/* help needed name the item existing/ added */}
+                    {this.state.errors ? (
+                      <div className="col-md-9 col-lg-8 mx-auto">
+                        <h3 className="login-heading mb-4">Oops</h3>
+                        <p>
+                          {this.setState.name} this item already exists.
+                          <br /> take a look in <i>Search</i>.
+                        </p>
+                      </div>
+                    ) : null}
+                    {this.state.added ? (
+                      <div className="col-md-9 col-lg-8 mx-auto">
+                        <h3 className="login-heading mb-4">Success</h3>
+                        <p>
+                          the new item was added successfully.
+                          <br /> you can now look for it it in <i>Search</i>.
+                        </p>
+                      </div>
+                    ) : null}
+                    {/* von anfang an: no error no added */}
+                    {/* already existing: hi error, no added */}
+                    {/* new: no error, hi added */}
                   </div>
                 </div>
               </div>
@@ -179,7 +156,7 @@ class AddFoodItem extends React.Component {
                             id="inputGroupSelect01"
                             defaultValue={"DEFAULT"}
                             value={this.state.option}
-                            onChange={this.changeOptionHandler} 
+                            onChange={this.changeOptionHandler}
                           >
                             <option value="DEFAULT" disabled>
                               Choose...
@@ -208,29 +185,12 @@ class AddFoodItem extends React.Component {
                           type="submit"
                           onClick={() => {
                             console.log("addbutton", this.state.errors);
+                            console.log("option value", this.state.option);
                           }}
                         >
                           Add
                         </button>
-                        <h1 style={{ color: "red" }}>
-                          {/* {this.state.errors ? "you already posted" : ""} */}
-                          {this.state.errors ? (
-                            <Toast>
-                              <ToastHeader>
-                                <img
-                                  src="holder.js/20x20?text=%20"
-                                  className="rounded mr-2"
-                                  alt=""
-                                />
-                                <strong className="mr-auto">Bootstrap</strong>
-                                <small>11 mins ago</small>
-                              </ToastHeader>
-                              <ToastBody>
-                                Sorry, but this item already exists
-                              </ToastBody>
-                            </Toast>
-                          ) : null}
-                        </h1>
+                        <h1 style={{ color: "red" }}></h1>
                       </Form>
                     </div>
                   </div>

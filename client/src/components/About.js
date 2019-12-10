@@ -18,9 +18,8 @@ export class About extends Component {
                         <h3 className="login-heading mb-4">Info</h3>
                         <div className="form-label-group">
                           <div className="container">
-                            <p>
-                              <u>context</u>
-                            </p>
+                            <u>context</u>
+
                             <div
                               id="scroll3"
                               className="cardScroll w-100 card-body"
@@ -46,16 +45,21 @@ export class About extends Component {
                                 The values per person vary between 1.4 - 2.5
                                 tons per year. It depends on what we eat, where
                                 we shop and where our food comes from. <br />
-                                This app expects that with an &nbsp;
+                                Research expects that with an &nbsp;
                                 <u>
                                   annual food consumption of less than 1.5 tons
                                   of CO2 per year
                                 </u>
                                 , we can have a lasting effect on our climate.
                                 <br />
-                                The numbers come from the research of several
-                                sources and give only average values. Exact
-                                quantities are also not taken into account.
+                                This app has no claim to correctness. The
+                                visualization in the profile takes{" "}
+                                <u>1.5 kg as total quantity.</u> So 1/1000 of
+                                the recommended annual quantity. The values of
+                                single food items come from the research of
+                                several sources and give only average scores.
+                                Exact quantities are also not taken into
+                                account.
                                 <br />
                               </p>
                             </div>
@@ -92,15 +96,15 @@ export class About extends Component {
                             >
                               {this.props.children}
 
-                              <p>
+                              <span>
                                 This app was created as the final project of the
                                 Ironhack Web Development Bootcamp. <br />
                                 It is based on MERN stack. <br />
                                 Person behind the scenes:
                                 <br />
                                 Chantal Herrmann <br />
-                                <div class="row">
-                                  <div class="col-2">
+                                <div className="row">
+                                  <div className="col-2">
                                     <a
                                       href="https://github.com/ChantyHe90"
                                       style={{
@@ -111,7 +115,7 @@ export class About extends Component {
                                       <Github />
                                     </a>
                                   </div>
-                                  <div class="col-sm">
+                                  <div className="col-sm">
                                     <a
                                       href="https://www.linkedin.com/in/chanty-herrmann-571836157/"
                                       style={{
@@ -123,7 +127,7 @@ export class About extends Component {
                                     </a>
                                   </div>
                                 </div>
-                              </p>
+                              </span>
                             </div>
                             <p>
                               <u>references</u>

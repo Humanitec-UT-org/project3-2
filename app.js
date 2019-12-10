@@ -59,7 +59,7 @@ app.use("/api/projects", projectsRouter);
 app.use("/api/foods", foodsRouter);
 //app.use("/api/products", productRouter);
 app.use("/api/add", addRouter);
-app.use("api/about", aboutRouter);
+app.use("/api/about", aboutRouter);
 
 // catch 404 and forward to error handler
 app.use("/api", function(req, res, next) {

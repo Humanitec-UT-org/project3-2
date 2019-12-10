@@ -1,5 +1,6 @@
 import React from "react";
 import PlusCircle from "../components/styleLogos/Plus-Circle";
+import { Tooltip, OverlayTrigger } from "react-bootstrap";
 
 export class SingleFoodItem extends React.Component {
   constructor() {
@@ -10,7 +11,6 @@ export class SingleFoodItem extends React.Component {
   }
   changeVisible = () => {
     this.props.isVisible();
-
   };
   handleItem = () => {
     this.props.addFood(this.props.item);
@@ -30,17 +30,34 @@ export class SingleFoodItem extends React.Component {
     return (
       <div>
         <table>
-          <tr>
-            <th width={100}>{this.props.item.name}</th>
-            <th>
-              <button
-                onClick={this.handleItem}
-                style={{ backgroundColor: "transparent" }}
-              >
-                <PlusCircle />
-              </button>
-            </th>
-          </tr>
+          <tbody>
+            <tr>
+              {["bottom"].map(placement => (
+                <OverlayTrigger
+                  key={placement}
+                  placement={placement}
+                  overlay={
+                    <Tooltip id={`tooltip-${placement}`}>
+                      <span style={{ fontSize: "12px" }}>
+                        {this.props.item.emission} gr
+                      </span>
+                    </Tooltip>
+                  }
+                >
+                  <th width={100}>{this.props.item.name}</th>
+                </OverlayTrigger>
+              ))}
+
+              <th>
+                <button
+                  onClick={this.handleItem}
+                  style={{ backgroundColor: "transparent" }}
+                >
+                  <PlusCircle />
+                </button>
+              </th>
+            </tr>
+          </tbody>
         </table>
         {/* exmaple show true onClick  */}
         {/* this works! */}

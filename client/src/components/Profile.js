@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import ManualSearch from "./ManualSearch";
 import ReactMinimalPieChart from "react-minimal-pie-chart";
 import axios from "axios";
 import Canvas from "./styleCanvas/Canvas";
@@ -13,6 +12,8 @@ import CanvasSeed from "./styleCanvas/CanvasSeed";
 import CanvasSpice from "./styleCanvas/CanvasSpice";
 import CanvasVegetable from "./styleCanvas/CanvasVegetable";
 import Trash from "./Trash";
+import { Table, Form } from "react-bootstrap";
+import List from "./ListAndSearch";
 
 // fat
 // meat
@@ -60,10 +61,7 @@ export class Profile extends Component {
     const sum = this.state.addedFooditems
       .reduce((a, c) => a + c.emission, 0)
       .toFixed(1);
-    // const sum = this.state.addedFooditems.reduce(
-    //   (a, c) => (a = a || 0 + (c = c || 0).emission),
-    //   0
-    // );
+
     // fat
     const fatItems = this.state.addedFooditems.filter(d => d.group === "fat");
     const fatSum = fatItems.reduce((a, c) => a + c.emission, 0);
@@ -72,10 +70,13 @@ export class Profile extends Component {
     const vegetableItems = this.state.addedFooditems.filter(
       d => d.group === "vegetable"
     );
+
     const vegetableSum = vegetableItems.reduce((a, c) => a + c.emission, 0);
+    console.log("summe veg", vegetableSum);
     // meat
     const meatItems = this.state.addedFooditems.filter(d => d.group === "meat");
     const meatSum = meatItems.reduce((a, c) => a + c.emission, 0);
+    console.log("summe meat", meatSum);
     // grain
     const grainItems = this.state.addedFooditems.filter(
       d => d.group === "grain"
@@ -90,6 +91,7 @@ export class Profile extends Component {
       d => d.group === "dairy"
     );
     const dairySum = dairyItems.reduce((a, c) => a + c.emission, 0);
+    console.log("dairysum", dairySum);
     // fruits
     const fruitItems = this.state.addedFooditems.filter(
       s => s.group === "fruits"
@@ -103,8 +105,9 @@ export class Profile extends Component {
     // fish
     const fishItems = this.state.addedFooditems.filter(f => f.group === "fish");
     const fishSum = fishItems.reduce((a, c) => a + c.emission, 0);
+    console.log("summe fish", fishSum);
     const leftoverEmission =
-      1500 -
+      150 -
       (fishSum +
         spiceSum +
         fruitSum +
@@ -117,14 +120,12 @@ export class Profile extends Component {
     console.log("fishSum", fishSum);
     console.log("leftoverEmission", leftoverEmission);
     //const sum = this.props.user.addedFooditems[0].emission;
-    let styles1 = {
-      marginLeft: "100"
-    };
+
     return (
       <div>
-        {/* {console.log(this)}
-        Hello,{this.state.user} */}
-        {this.props.user ? this.props.user.username : "Stranger"} <br></br>
+        {/* help needed */}
+        Hi,
+        {this.state.user ? this.state.user.username : "Stranger"} <br></br>
         <div className="container" style={{ margin: "0 0 60 60" }}>
           <div className="row">
             <div className="col-8">
@@ -147,9 +148,9 @@ export class Profile extends Component {
                   // orange
                   { titel: "Grain", value: grainSum, color: "#E91C59" },
                   // blau
-                  { titel: "Veggies", value: grainSum, color: "#7ED5F0" },
-                  { titel: "Meat", value: grainSum, color: "#794E1B" },
-                  { titel: "Fat", value: grainSum, color: "#FF0312" },
+                  { titel: "Veggies", value: vegetableSum, color: "#7ED5F0" },
+                  { titel: "Meat", value: meatSum, color: "#794E1B" },
+                  { titel: "Fat", value: fatSum, color: "#FFFFFF" },
                   {
                     title: "Leftover",
                     value: leftoverEmission,
@@ -170,20 +171,34 @@ export class Profile extends Component {
                 startAngle={0}
                 viewBoxSize={[100, 100]}
               />
-              absatz unter dem chart lorem ipsum bla lorem ipsum bla lorem ipsum
-              bla lorem ipsum bla lorem ips lorem ipsum bla lorem ipsum bla
-              lorem ipsum bla lorem ipsum bla lorem ips lorem ipsum bla lorem
-              ipsum bla lorem ipsum bla lorem ipsum bla lorem ips lorem ipsum
-              bla lorem ipsum bla lorem ipsum bla lorem ipsum bla lorem ipsum
-              bla lorem ipsum bla lorem ipsum bla lorem ipsum bla lorem ipsum
-              bla lorem ipsum bla lorem ipsum bla lorem ipsum bla lorem ipsum
-              bla lorem ipsum bla lorem ipsum bla lorem ipsum bla lorem ipsum
-              bla lorem ipsum bla lorem ipsum bla lorem ipsum bla
             </div>
             <div className="col-4">
               <h5 style={{ fontWeight: "700" }}>
                 Items you added to your foodprint:
               </h5>
+
+              <div class="input-group-prepend justify-content-center">
+                <Form action="/api/foods" method="GET" class="">
+                  <br />
+                  <div class="form-group search-bar">
+                    <input
+                      id="nomatch"
+                      type="text"
+                      name="search"
+                      placeholder="search by username"
+                      class="form-control"
+                      width="100px"
+                    ></input>
+                    <input
+                      type="submit"
+                      value="Search"
+                      class="btn btn-outline-info"
+                    ></input>
+                  </div>
+                </Form>
+              </div>
+              <List />
+
               <div
                 id="scroll3"
                 className="cardScroll w-60 card"
@@ -211,65 +226,67 @@ export class Profile extends Component {
                   ))}
                 </p>
               </div>
-              <table className="table" style={{ padding: "0.5rem" }}>
-                <tr>
-                  <th width="20" height="20">
-                    <CanvasFruits></CanvasFruits>
-                  </th>
-                  <th>fruits</th>
-                  <th width="20" height="20">
-                    <CanvasVegetable></CanvasVegetable>
-                  </th>
-                  <th>vegetable</th>
-                </tr>
-                <tr>
-                  <td>
-                    <CanvasFish></CanvasFish>
-                  </td>
-                  <td>fish</td>
-                  <th width="20" height="20">
-                    <CanvasSpice></CanvasSpice>
-                  </th>
-                  <th>spice</th>
-                </tr>
-                <tr>
-                  <th width="20" height="20">
-                    <CanvasFat></CanvasFat>
-                  </th>
-                  <th>fat</th>
-                  <th width="20" height="20">
-                    <CanvasMeat>meat</CanvasMeat>
-                  </th>
-                  <th>meat</th>
-                </tr>
-                <tr>
-                  <th width="20" height="20">
-                    <CanvasDairy>dairy</CanvasDairy>
-                  </th>
-                  <th>dairy</th>
-                  <th width="20" height="20">
-                    <CanvasSeed>seed</CanvasSeed>
-                  </th>
-                  <th>seed</th>
-                </tr>
-                <tr>
-                  <th width="20" height="20">
-                    <CanvasGrain>grain</CanvasGrain>
-                  </th>
-                  <th>grain</th>
-                  <th width="20" height="20">
-                    Summe:
-                  </th>
-                  <th>
-                    {" "}
-                    {sum} gr <br />
-                    of 1.5 t
-                  </th>
-                </tr>
-              </table>
-              <Canvas /> shows your remaining emission for this month!
-              <br />
-              blabla
+              <Table
+                responsive="sm"
+                className="table"
+                style={{ padding: "0.5rem" }}
+              >
+                <tbody>
+                  <tr>
+                    <th width="20" height="20">
+                      <CanvasFruits></CanvasFruits>
+                    </th>
+                    <th>fruits</th>
+                    <th width="20" height="20">
+                      <CanvasVegetable></CanvasVegetable>
+                    </th>
+                    <th>vegetable</th>
+                  </tr>
+                  <tr>
+                    <td>
+                      <CanvasFish></CanvasFish>
+                    </td>
+                    <td>fish</td>
+                    <th width="20" height="20">
+                      <CanvasSpice></CanvasSpice>
+                    </th>
+                    <th>spice</th>
+                  </tr>
+                  <tr>
+                    <th width="20" height="20">
+                      <CanvasFat></CanvasFat>
+                    </th>
+                    <th>fat</th>
+                    <th width="20" height="20">
+                      <CanvasMeat>meat</CanvasMeat>
+                    </th>
+                    <th>meat</th>
+                  </tr>
+                  <tr>
+                    <th width="20" height="20">
+                      <CanvasDairy>dairy</CanvasDairy>
+                    </th>
+                    <th>dairy</th>
+                    <th width="20" height="20">
+                      <CanvasSeed>seed</CanvasSeed>
+                    </th>
+                    <th>seed</th>
+                  </tr>
+                  <tr>
+                    <th width="20" height="20">
+                      <CanvasGrain>grain</CanvasGrain>
+                    </th>
+                    <th>grain</th>
+                    <th width="20" height="20">
+                      Total:
+                    </th>
+                    <th>
+                      {sum} gr <br />
+                    </th>
+                  </tr>
+                </tbody>
+              </Table>
+              <span>Go ahead & add items to your profile. </span>
             </div>
           </div>
         </div>
