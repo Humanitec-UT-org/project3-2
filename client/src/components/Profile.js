@@ -52,7 +52,7 @@ export class Profile extends Component {
     let filteredFoodItems = this.state.addedFooditems.filter(
       e => e !== foodItem
     );
-    console.log("deleting ", filteredFoodItems[0].name);
+
     axios
       .post("/api/foods", { addedFooditems: filteredFoodItems })
       .then(response => {
@@ -141,7 +141,7 @@ export class Profile extends Component {
           style={{ margin: "20 20 60 60", marginTop: "30px" }}
         >
           <div className="row">
-            <div className="col-8">
+            <div className="col-6 col-md-8">
               <ReactMinimalPieChart
                 animate={false}
                 animationDuration={500}
@@ -185,7 +185,7 @@ export class Profile extends Component {
                 viewBoxSize={[100, 100]}
               />
             </div>
-            <div className="col-4">
+            <div className="col-6 col-md-4">
               <h5 style={{ fontWeight: "700" }}>
                 Items you added to your foodprint:
               </h5>

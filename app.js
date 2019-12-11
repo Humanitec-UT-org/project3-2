@@ -10,7 +10,6 @@ const passport = require("passport");
 
 var indexRouter = require("./routes/index");
 var authRouter = require("./routes/auth");
-let projectsRouter = require("./routes/projects");
 let foodsRouter = require("./routes/foods");
 //let productRouter = require("./routes/product");
 let addRouter = require("./routes/add");
@@ -55,7 +54,7 @@ app.use(express.static(path.join(__dirname, "/client/build")));
 // this needs to be after all the other setup (i.e. the order is important )
 app.use("/", indexRouter);
 app.use("/api/auth", authRouter);
-app.use("/api/projects", projectsRouter);
+
 app.use("/api/foods", foodsRouter);
 //app.use("/api/products", productRouter);
 app.use("/api/add", addRouter);

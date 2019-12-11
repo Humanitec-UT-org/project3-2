@@ -48,7 +48,7 @@ export default class myNavbar extends Component {
   render() {
     return (
       <div>
-        <Navbar bg="dark" variant="dark">
+        <Navbar bg="dark" variant="dark" expand="lg">
           <Navbar.Brand href="../">
             Your Ecological Foodprint {/* info start */}
             {["bottom"].map(placement => (
@@ -76,6 +76,7 @@ export default class myNavbar extends Component {
             ))}
             {/* info end */}
           </Navbar.Brand>
+
           <Nav className="mr-auto"></Nav>
 
           {this.props.user ? (

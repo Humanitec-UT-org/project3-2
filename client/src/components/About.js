@@ -54,7 +54,7 @@ export class About extends Component {
                                 <br />
                                 This app has no claim to correctness. The
                                 visualization in the profile takes{" "}
-                                <u>1.5 kg as total quantity.</u> So 1/1000 of
+                                <u>0.15 kg as total quantity.</u> So 1/10,000 of
                                 the recommended annual quantity. The values of
                                 single food items come from the research of
                                 several sources and give only average scores.

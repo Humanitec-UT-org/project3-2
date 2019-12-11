@@ -84,7 +84,7 @@ class AddFoodItem extends Component {
                     {/* help needed name the item existing/ added */}
                     {this.state.errors ? (
                       <div className="col-md-9 col-lg-8 mx-auto">
-                        <h3 className="login-heading mb-4">Oops</h3>
+                        <h3 className="login-heading mb-4">Oops...</h3>
                         <p>
                           {this.setState.name} this item already exists.
                           <br /> take a look in <i>Search</i>.
@@ -93,7 +93,7 @@ class AddFoodItem extends Component {
                     ) : null}
                     {this.state.added ? (
                       <div className="col-md-9 col-lg-8 mx-auto">
-                        <h3 className="login-heading mb-4">Success</h3>
+                        <h3 className="login-heading mb-4">Yes!</h3>
                         <p>
                           the new item was added successfully.
                           <br /> you can now look for it it in <i>Search</i>.
@@ -114,7 +114,7 @@ class AddFoodItem extends Component {
                 <div className="container">
                   <div className="row">
                     <div className="col-md-9 col-lg-8 mx-auto">
-                      <h3 className="login-heading mb-4">add a new Product:</h3>
+                      <h3 className="login-heading mb-4">add a new product:</h3>
                       <Form onSubmit={this.submitHandler}>
                         <div className="form-label-group">
                           <input

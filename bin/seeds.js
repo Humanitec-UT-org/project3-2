@@ -274,14 +274,6 @@ let foods = [
     car: 0
   },
   {
-    name: "broccoli",
-    suffix: "frozen",
-    img: "",
-    group: "vegetable",
-    emission: 0.09,
-    car: 0
-  },
-  {
     name: "mushrooms",
     img: "",
     group: "vegetable",
@@ -527,14 +519,7 @@ let foods = [
   },
   // grain
   //
-  {
-    name: "bread",
-    suffix: "whole_grain",
-    img: "",
-    group: "grain",
-    emission: 0.06,
-    car: 0
-  },
+
   {
     name: "bread",
     suffix: "white_flour",
@@ -546,14 +531,6 @@ let foods = [
   {
     name: "bread_roll",
     suffix: "whole_grain",
-    img: "",
-    group: "grain",
-    emission: 0.06,
-    car: 0
-  },
-  {
-    name: "bread_roll",
-    suffix: "white_flour",
     img: "",
     group: "grain",
     emission: 0.06,
@@ -618,14 +595,7 @@ let foods = [
     emission: 0.05,
     car: 0
   },
-  {
-    name: "toast",
-    suffix: "whole_grain",
-    img: "",
-    group: "grain",
-    emission: 0.05,
-    car: 0
-  },
+
   // seed
   {
     name: "beans",
