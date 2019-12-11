@@ -56,7 +56,6 @@ app.use("/", indexRouter);
 app.use("/api/auth", authRouter);
 
 app.use("/api/foods", foodsRouter);
-//app.use("/api/products", productRouter);
 app.use("/api/add", addRouter);
 app.use("/api/about", aboutRouter);
 
