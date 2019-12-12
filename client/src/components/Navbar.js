@@ -95,7 +95,7 @@ export default class myNavbar extends Component {
                   >
                     <Link to="/profile">
                       <Button variant="outline-info">
-                        {/* <User /> */} Profile
+                        {/* <User /> */} profile
                       </Button>
                     </Link>
                   </OverlayTrigger>
@@ -115,7 +115,7 @@ export default class myNavbar extends Component {
                   >
                     <Link to="/add">
                       <Button variant="outline-info">
-                        {/* <DataBase /> */} Add
+                        {/* <DataBase /> */} create
                       </Button>
                     </Link>
                   </OverlayTrigger>
@@ -134,7 +134,7 @@ export default class myNavbar extends Component {
                   >
                     <Link to="/search">
                       <Button variant="outline-info">
-                        {/* <PlusCircle /> */} Search
+                        {/* <PlusCircle /> */} add
                       </Button>
                     </Link>
                   </OverlayTrigger>

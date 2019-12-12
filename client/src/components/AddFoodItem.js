@@ -87,7 +87,7 @@ class AddFoodItem extends Component {
                         <h3 className="login-heading mb-4">Oops...</h3>
                         <p>
                           {this.setState.name} this item already exists.
-                          <br /> take a look in <i>Search</i>.
+                          <br /> take a look in <i>add</i>.
                         </p>
                       </div>
                     ) : null}
@@ -96,7 +96,7 @@ class AddFoodItem extends Component {
                         <h3 className="login-heading mb-4">Yes!</h3>
                         <p>
                           the new item was added successfully.
-                          <br /> you can now look for it it in <i>Search</i>.
+                          <br /> you can now look for it it in <i>add</i>.
                         </p>
                       </div>
                     ) : null}

@@ -51,6 +51,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "/client/build")));
+
 // this needs to be after all the other setup (i.e. the order is important )
 app.use("/", indexRouter);
 app.use("/api/auth", authRouter);
