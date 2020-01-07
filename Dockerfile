@@ -8,7 +8,7 @@ WORKDIR /usr/src/app
 # Install app dependencies
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
 # where available (npm@5+)
-COPY server/package*.json ./
+COPY package.json /app/package.json
 
 COPY docker-entrypoint.sh ./
 RUN chmod +x ./docker-entrypoint.sh
