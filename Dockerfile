@@ -1,24 +1,18 @@
-###############################################################################
-# deployable environment                                                      #
-###############################################################################
-FROM node:10 as deployable
-# Create app directory
-WORKDIR /usr/src/app
+# base image
+FROM node:12.2.0-alpine
 
-# Install app dependencies
-# A wildcard is used to ensure both package.json AND package-lock.json are copied
-# where available (npm@5+)
+# set working directory
+WORKDIR /app
+
+# add `/app/node_modules/.bin` to $PATH
+ENV PATH /app/node_modules/.bin:$PATH
+
+# install and cache app dependencies
 COPY package.json /app/package.json
+RUN npm install --silent
+RUN npm install react-scripts@3.0.1 -g --silent
 
-COPY docker-entrypoint.sh ./
-RUN chmod +x ./docker-entrypoint.sh
-
-RUN npm install
-
-# Bundle app source
-COPY server/ ./
-COPY --from=build /app/build/ /usr/src/app/public/
+# start app
+CMD ["npm", "start"]
 
 EXPOSE 8080
-ENTRYPOINT ["./docker-entrypoint.sh"]
-CMD [ "node", "./bin/www" ]
